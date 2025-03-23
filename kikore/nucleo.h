@@ -1,0 +1,161 @@
+#ifndef NUCLEO_H
+#define NUCLEO_H
+
+/** NÚCLEO_H
+ * 
+ * Descrição: Aqui estarão as funções gerais usadas para finalizar o programa / tratar erros
+ * Data de início: 3/2025
+ * 
+ */
+
+//////////////////////////////////////////////////
+// BIBLIOTECAS
+
+#include <stdlib.h> //   exit
+#include <stdio.h>  // printf
+
+//////////////////////////////////////////////////
+// COMPATIBILIDADE
+
+#ifndef __func__
+#define __func__ "<funcao_desconhecida>"
+#endif
+
+//////////////////////////////////////////////////
+// CORES PARA O TERMINAL
+
+#define VERMELHO   "\033[1;31m"
+#define VERDE      "\033[1;32m"
+#define RESETAR    "\033[0m"
+ 
+//////////////////////////////////////////////////
+// Tipos Especiais
+
+// Byte 
+typedef unsigned char byte;
+short tamanhoByte = sizeof (byte);
+
+// String simples
+typedef char * string;
+short tamanhoString = sizeof (string);
+
+// Valor do sistema
+typedef byte * valor;
+short tamanhoValor = sizeof (valor);
+
+// Ponteiro
+typedef void * ptr;
+short tamanhoPtr = sizeof (ptr);
+
+// Função
+typedef valor (* funcao) (valor, ...);
+short tamanhoFuncao = sizeof (funcao);
+
+// Char
+short tamanhoChar = sizeof (char);
+
+// Int
+short tamanhoInt = sizeof (int);
+
+// Double
+short tamanhoDouble = sizeof (double);
+
+//////////////////////////////////////////////////
+// Contadores Globais
+
+// Mallocs feitos
+long alocacoes_feitas = 0;
+
+// Memória sendo usada atualmente (em bytes)
+long memoria_usada = 0;
+
+// Frees feitos
+long limpezas_feitas = 0;
+
+//////////////////////////////////////////////////
+// Finalizadores
+
+/**
+ * Descrição: Finaliza o programa com um código.
+*/       
+void finalizar (int val, string men)
+{
+
+     if (val) // detector de erro
+        printf (VERMELHO "\n\n\tPROGRAMA FINALIZADO COM ERRO CODIGO '%d'\n\t%s\n\n" RESETAR, val, (men != NULL)? men: ""); 
+     
+    printf 
+    ( VERDE
+        "\n\n\t%s\n\t%s '%d' %s\n\n\t'%ld' %s\n\t'%ld' %s\n" RESETAR, 
+        "FIM DO PROGRAMA", "Finalizado com um total de", 
+        alocacoes_feitas, "alocacoes feitas", memoria_usada, "memoria usada", limpezas_feitas, "limpezas feitas"
+    );
+
+    printf ("\n");
+
+    exit (val);
+}
+
+//////////////////////////////////////////////////
+// Análise de erros
+
+/**
+ * Descrição: Finaliza o programa se um erro for percebido.
+*/   
+void VERIFY_ERROR (const string mensagem, string arquivo, const string funcao, int erro, int linha)
+{
+    if (erro)
+    {
+        printf 
+        ( VERMELHO
+            "\n\n\tERRO NO ARQUIVO: %s\n\tDA FUNCAO: %s\n\tNA LINHA : %d\n\n" RESETAR, 
+            arquivo,
+            funcao,
+            linha
+        );
+
+        finalizar (erro, mensagem);
+    }
+}
+
+//////////////////////////////////////////////////
+// Debug
+
+/**
+ * Descrição: Uma linha de DEBUG que ajuda a identificar erros no código. 
+ * Fácil de ver após debugar e fácil de limpar.
+*/ 
+#define DEBUGLINE_DEBUGLINE_DEBUGLINE_DEBUGLINE_DEBUGLINE \
+printf ("\n\tlinha %d\n", __LINE__);
+
+/**
+ * Descrição: Uma forma mais enxuta do VERIFY_ERROR, tendo apenas um valor 
+ * como condição. Se o valor for verdadeiro, a função dispara um erro.
+*/  
+#define verificarErro(erro,msg) VERIFY_ERROR (msg, __FILE__, __func__, erro, __LINE__);
+
+//////////////////////////////////////////////////
+// MEMÓRIA
+
+// Malloca, registra e verifica
+#define malocar(ptr,tipo,tam) \
+do { ptr = (tipo) malloc(tam); \
+    alocacoes_feitas ++; \
+    memoria_usada += tam; \
+    verificarErro (ptr == NULL, "Malloc fracassado");} \
+    while (0);
+
+// Verifica, registra e limpa
+#define limpar (ptr) \
+do {verificarErro (ptr == NULL, "Limpando ponteiro nulo"); limpezas_feitas ++; free (ptr);} while (0);
+
+//////////////////////////////////////////////////
+
+#endif
+
+int main (void)
+{
+    verificarErro (1, "sexo");
+
+    return 0;
+}
