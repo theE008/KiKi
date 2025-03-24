@@ -8,7 +8,7 @@
  * 
  */
 
-//////////////////////////////////////////////////
+////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
 #include <stdlib.h> //   exit
@@ -31,25 +31,13 @@
 //////////////////////////////////////////////////
 // Tipos Especiais
 
-// Byte 
-typedef unsigned char byte;
-short tamanhoByte = sizeof (byte);
-
 // String simples
 typedef char * string;
 short tamanhoString = sizeof (string);
 
-// Valor do sistema
-typedef byte * valor;
-short tamanhoValor = sizeof (valor);
-
 // Ponteiro
 typedef void * ptr;
 short tamanhoPtr = sizeof (ptr);
-
-// Função
-typedef valor (* funcao) (valor, ...);
-short tamanhoFuncao = sizeof (funcao);
 
 // Char
 short tamanhoChar = sizeof (char);
@@ -134,6 +122,14 @@ printf ("\n\tlinha %d\n", __LINE__);
 */  
 #define verificarErro(erro,msg) VERIFY_ERROR (msg, __FILE__, __func__, erro, __LINE__);
 
+/**
+ * Descrição: Uma forma mais enxuta do verificarErro, focada em subtipos.
+*/  
+#define verificarSubtipo(val,codSubtipo) \
+verificarErro (val == NULL, "Input inexistente"); \
+byte tipo = pegar_tipo (val); \
+verificarErro (tipo != codSubtipo, "Valor recebido incompativel com a funcao");
+
 //////////////////////////////////////////////////
 // MEMÓRIA
 
@@ -150,12 +146,18 @@ do { ptr = (tipo) malloc(tam); \
 do {verificarErro (ptr == NULL, "Limpando ponteiro nulo"); limpezas_feitas ++; free (ptr);} while (0);
 
 //////////////////////////////////////////////////
+// LOOPS
 
-#endif
+// Estrutura de repetição mais simples que o FOR
+#define loop(var,val) for (int var = 0; var < val; var++)
+#define fimDoLoop var = val;
 
-int main (void)
-{
-    verificarErro (1, "sexo");
+//////////////////////////////////////////////////
+// MACRO DE ACESSO
 
-    return 0;
-}
+// deixa o acesso mais alto nível
+#define acessar(tipo,val,indice) * ((tipo *) val + indice)  
+
+//////////////////////////////////////////////////
+
+#endif 
