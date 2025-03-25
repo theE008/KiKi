@@ -19,11 +19,11 @@
 
 // Valor do sistema
 typedef byte * valor;
-short tamanhoValor = sizeof (valor);
+const short tamanhoValor = sizeof (valor);
 
 // Função
 typedef valor (* funcao) (valor, ...);
-short tamanhoFuncao = sizeof (funcao);
+const short tamanhoFuncao = sizeof (funcao);
 
 // Código de Valor Vazio
 const byte codigoVazio = 0;

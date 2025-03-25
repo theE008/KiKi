@@ -12,9 +12,13 @@
 // BIBLIOTECAS
 
 #include "manipulador.h"
+#include "texto.h"
 
 //////////////////////////////////////////////////
 // Valores especiais
+
+// Tamanho
+const short tamanhoCampo = tamanhoByte + 2 * tamanhoValor;
 
 // Código de Campo
 const byte codigoCampo = 12;
@@ -28,17 +32,15 @@ valor novo_campo (string nome, valor val)
     verificarErro (nome == NULL, "String invalida");
     verificarErro (val  == NULL, "Valor invalido" );
 
-    int tam = tamanhoDaString (nome);
-
-    valor tmp = novo_valor (tamanhoByte + tamanhoValor + tamanhoInt + tam * tamanhoChar);
-
+    valor tmp = novo_valor (tamanhoCampo);
     valor mnp = novo_manipulador (tmp);
-
-    anotar_configuracoes (mnp, vivo, rigido, codigoCampo);
-    anotar_valor  (mnp,  val);
-    anotar_int    (mnp,  tam);
-    anotar_string (mnp, nome);
+    valor txt = novo_texto (nome);
     
+    anotar_configuracoes (mnp, vivo, rigido, codigoCampo);
+    anotar_valor  (mnp,  txt);
+    anotar_valor  (mnp,  val);
+    
+    return tmp;
 }
 
 //////////////////////////////////////////////////

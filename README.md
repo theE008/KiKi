@@ -42,13 +42,12 @@ Os subtipos são limitados a 4 bits, permitindo a representação de 31 tipos di
 
 | Valor | Subtipo |
 |-------|---------|
-| 19    | Número Imaginário |
-| 18    | Número Real |
-| 17    | Número Racional |
-| 16    | Número Inteiro |
-| 15    | Número Natural |
-| 14    | Complexo |
-| 13    | ~Componente~ |
+| 18    | Número Imaginário |
+| 17    | Número Real |
+| 16    | Número Racional |
+| 15    | Número Inteiro |
+| 14    | Número Natural |
+| 13    | Complexo |
 | 12    | Campo |
 | 11    | Função |
 | 10    | Arranjo |
