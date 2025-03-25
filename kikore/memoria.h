@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////
 // Valores especiais
 
-// Código de Byte
+// Código de Memória
 const byte codigoMemoria = 7;
 
 ////////////////////////////////////////////////// 
@@ -41,7 +41,6 @@ valor nova_memoria (ptr val, ptr prox, int nivel)
     anotar_ptr  (mnp,  prox);
 
     if (usadoPelaMemoria) limpar (mnp);
-    else registrarNaMemoria (tmp);
 
     return tmp;
 }

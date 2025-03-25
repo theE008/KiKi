@@ -15,13 +15,14 @@
 // BIBLIOTECAS
 
 #include "config.h"
+#include "texto.h"
 #include "valor.h"
 #include "GC.h"
 
 //////////////////////////////////////////////////
 // Valores especiais
 
-// Código de Byte
+// Código de Manipulador
 const byte codigoManipulador = 8;
 
 ////////////////////////////////////////////////// 
@@ -36,9 +37,7 @@ valor novo_manipulador (valor val)
 
     acessar (byte, tmp, 0) = nova_configuracao (vivo, maleavel, codigoManipulador);
     acessar (int, tmp, tamanhoByte) = 0; // Indice
-    acessar (ptr, tmp, tamanhoByte + tamanhoInt) = val;        
-
-    registrarNaMemoria (tmp);
+    acessar (ptr, tmp, tamanhoByte + tamanhoInt) = val;
 
     return tmp;
 }
@@ -101,14 +100,34 @@ valor anotar_##tipo (valor mnp, tipo t) \
     return mnp; \
 }
 
-novaFuncaoDeAnotarNoManipulador (byte, tamanhoByte);
-novaFuncaoDeAnotarNoManipulador (ptr , tamanhoPtr );
-novaFuncaoDeAnotarNoManipulador (int , tamanhoInt );
+novaFuncaoDeAnotarNoManipulador (valor , tamanhoValor );
+novaFuncaoDeAnotarNoManipulador (byte  , tamanhoByte  );
+novaFuncaoDeAnotarNoManipulador (ptr   , tamanhoPtr   );
+novaFuncaoDeAnotarNoManipulador (int   , tamanhoInt   );
 
 // Anota as configurações
 valor anotar_configuracoes (valor mnp, bool vivo_morto, byte modificador, byte tipo_dado)
 {
     return anotar_byte (mnp, nova_configuracao (vivo_morto, modificador, tipo_dado));
+}
+
+// Anota string
+valor anotar_string (valor mnp, string str)
+{
+    verificarSubtipo (mnp, codigoManipulador);
+    verificarErro (str == NULL, "String invalida");
+
+    int x = pegar_indice (mnp);
+
+    valor val = pegar_valor     (mnp);
+    int   tam = tamanhoDaString (str);
+
+    loop (z, tam)
+    {
+        acessar (char, val, x + z * tamanhoChar) = str [z];
+    }
+
+    mudar_indice (mnp, x + tam * tamanhoChar);
 }
 
 //////////////////////////////////////////////////
