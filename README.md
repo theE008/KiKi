@@ -48,7 +48,7 @@ Os subtipos são limitados a 4 bits, permitindo a representação de 31 tipos di
 | 16    | Número Inteiro |
 | 15    | Número Natural |
 | 14    | Complexo |
-| 13    | ~!Componente~ |
+| 13    | ~Componente~ |
 | 12    | Campo |
 | 11    | Função |
 | 10    | Arranjo |
