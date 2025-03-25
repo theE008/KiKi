@@ -14,8 +14,9 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include "valor.h"
 #include "config.h"
+#include "valor.h"
+#include "GC.h"
 
 //////////////////////////////////////////////////
 // Valores especiais
@@ -37,7 +38,7 @@ valor novo_manipulador (valor val)
     acessar (int, tmp, tamanhoByte) = 0; // Indice
     acessar (ptr, tmp, tamanhoByte + tamanhoInt) = val;        
 
-    // Registrar na memória
+    registrarNaMemoria (tmp);
 
     return tmp;
 }
@@ -88,7 +89,7 @@ int usar_indice (valor mnp, int indice)
 
 //////////////////////////////////////////////////
 // FUNÇÕES DE ANOTAR
-
+ 
 // Macro de definição de funções de anotaçoes
 #define novaFuncaoDeAnotarNoManipulador(tipo,tamanho) \
 valor anotar_##tipo (valor mnp, tipo t) \
@@ -103,6 +104,12 @@ valor anotar_##tipo (valor mnp, tipo t) \
 novaFuncaoDeAnotarNoManipulador (byte, tamanhoByte);
 novaFuncaoDeAnotarNoManipulador (ptr , tamanhoPtr );
 novaFuncaoDeAnotarNoManipulador (int , tamanhoInt );
+
+// Anota as configurações
+valor anotar_configuracoes (valor mnp, bool vivo_morto, byte modificador, byte tipo_dado)
+{
+    return anotar_byte (mnp, nova_configuracao (vivo_morto, modificador, tipo_dado));
+}
 
 //////////////////////////////////////////////////
 

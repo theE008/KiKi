@@ -87,8 +87,3 @@ Atualmente, há um bit de propriedade ainda não utilizado. Esse bit poderia ser
 - Tipo `Localização`
 
 Isso abriria um vasto leque de possibilidades para a biblioteca, tornando-a altamente extensível.
-
----
-
-Este README fornece uma visão geral da arquitetura e das ideias por trás da biblioteca KiKi. Com essa abordagem modular e flexível, espera-se facilitar o uso de tipos de dados dinâmicos em C, tornando a linguagem mais expressiva e polimórfica sem perder desempenho.
-

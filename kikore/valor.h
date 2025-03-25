@@ -12,6 +12,7 @@
 // BIBLIOTECAS
 
 #include "byte.h"
+#include "GC.h"
 
 //////////////////////////////////////////////////
 // Tipos Especiais
@@ -38,6 +39,8 @@ valor novo_valor (size_t tam)
     malocar (tmp, valor, tam);
 
     loop (x, tam) * (tmp + x) = 0;
+
+    registrarNaMemoria (tmp);
 
     return tmp;
 }

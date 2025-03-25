@@ -107,6 +107,34 @@ void VERIFY_ERROR (const string mensagem, string arquivo, const string funcao, i
 }
 
 //////////////////////////////////////////////////
+// MEMÓRIA
+
+// Malloca, registra e verifica
+#define malocar(ptr,tipo,tam) \
+do { ptr = (tipo) malloc(tam); \
+    alocacoes_feitas ++; \
+    verificarErro (ptr == NULL, "Malloc fracassado"); \
+    memoria_usada += tam; }\
+    while (0);
+
+// Verifica, registra e limpa
+#define limpar(ptr) \
+do {verificarErro (ptr == NULL, "Limpando ponteiro nulo"); limpezas_feitas ++; free (ptr);} while (0)
+
+//////////////////////////////////////////////////
+// LOOPS
+
+// Estrutura de repetição mais simples que o FOR
+#define loop(var,val) for (int var = 0, continuar = 1; var < val && continuar; var++)
+#define fimDoLoop continuar = 0;
+
+//////////////////////////////////////////////////
+// MACRO DE ACESSO
+
+// deixa o acesso mais alto nível
+#define acessar(tipo,val,indice) * ((tipo *) val + indice)  
+
+//////////////////////////////////////////////////
 // Debug
 
 /**
@@ -130,33 +158,43 @@ verificarErro (val == NULL, "Input inexistente"); \
 byte tipo = pegar_tipo (val); \
 verificarErro (tipo != codSubtipo, "Valor recebido incompativel com a funcao");
 
-//////////////////////////////////////////////////
-// MEMÓRIA
+// Função de Debug
+int debugar_NUCLEO_H ()
+{
+    printf ("Iniciando testes da biblioteca NUCLEO_H...\n");
 
-// Malloca, registra e verifica
-#define malocar(ptr,tipo,tam) \
-do { ptr = (tipo) malloc(tam); \
-    alocacoes_feitas ++; \
-    memoria_usada += tam; \
-    verificarErro (ptr == NULL, "Malloc fracassado");} \
-    while (0);
+    // Teste de alocação de memória
+    string teste_string;
+    malocar (teste_string, string, (50 * tamanhoChar));
+    snprintf (teste_string, 50, "Teste de alocacao de memoria");
+    printf ("String alocada: %s\n", teste_string);
 
-// Verifica, registra e limpa
-#define limpar (ptr) \
-do {verificarErro (ptr == NULL, "Limpando ponteiro nulo"); limpezas_feitas ++; free (ptr);} while (0);
+    // Teste de acesso por macro
+    acessar (char, teste_string, 5) = 'X';
+    printf ("String modificada: %s\n", teste_string);
 
-//////////////////////////////////////////////////
-// LOOPS
+    // Teste de limpeza de memória
+    limpar (teste_string);
+    printf ("Memoria liberada com sucesso.\n");
 
-// Estrutura de repetição mais simples que o FOR
-#define loop(var,val) for (int var = 0; var < val; var++)
-#define fimDoLoop var = val;
+    DEBUGLINE_DEBUGLINE_DEBUGLINE_DEBUGLINE_DEBUGLINE;
 
-//////////////////////////////////////////////////
-// MACRO DE ACESSO
+    loop (x, 100)
+    {
+        printf ("loop %d\n", x);
 
-// deixa o acesso mais alto nível
-#define acessar(tipo,val,indice) * ((tipo *) val + indice)  
+        if (x == 50) fimDoLoop;
+    }
+
+    // Teste de verificação de erro
+    int erro_teste = 1;
+    verificarErro (erro_teste, "Erro simulado para teste.");
+
+    // Teste de finalização (comentado para evitar saída prematura)
+    // finalizar (0, "Testes concluídos com sucesso!");
+
+    return 0;
+}
 
 //////////////////////////////////////////////////
 
