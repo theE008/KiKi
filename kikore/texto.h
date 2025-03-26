@@ -13,6 +13,14 @@
 
 #include "GC.h"
 
+////////////////////////////////////////////////// 
+// PROTÓTIPOS
+
+valor anotar_configuracoes (valor mnp, bool vivo_morto, byte modificador, byte tipo_dado);
+valor anotar_string (valor mnp, string str);
+valor anotar_int (valor mnp, int t);
+valor novo_manipulador (valor val);
+
 //////////////////////////////////////////////////
 // Valores especiais
 
@@ -51,7 +59,7 @@ valor novo_texto (string str)
 
     valor mnp = novo_manipulador (tmp);
 
-    anotar_configuracoes (mnp, vivo, rigido, codigoTexto);
+    anotar_configuracoes (mnp, vivo, modificadorAtual, codigoTexto);
 
     anotar_int (mnp, tam);
 

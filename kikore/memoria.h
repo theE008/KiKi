@@ -26,20 +26,19 @@ const byte codigoMemoria = 7;
 // DEFINIÇÃO DO SUBTIPO MEMÓRIA
 
 // Construtor da memória
-valor nova_memoria (ptr val, ptr prox, int nivel)
+valor nova_memoria (ptr val, valor prox, int nivel)
 {
     verificarErro (val == NULL, "Input inexistente");
-    verificarSubtipo (((valor) prox), codigoMemoria);
 
-    valor tmp = novo_valor (tamanhoByte + tamanhoInt + tamanhoPtr + tamanhoPtr);
+    valor tmp = novo_valor (tamanhoByte + tamanhoInt + tamanhoPtr + tamanhoValor);
 
     valor mnp = novo_manipulador (tmp);
 
-    anotar_configuracoes (mnp, vivo, constante, codigoMemoria);
-    anotar_int  (mnp, nivel);
-    anotar_ptr  (mnp,   val);
-    anotar_ptr  (mnp,  prox);
-
+    anotar_configuracoes (mnp, vivo, modificadorAtual, codigoMemoria);
+    anotar_int    (mnp, nivel);
+    anotar_ptr    (mnp,   val);
+    anotar_valor  (mnp,  prox);
+    
     if (usadoPelaMemoria) limpar (mnp);
 
     return tmp;

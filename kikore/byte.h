@@ -21,7 +21,7 @@ typedef unsigned char byte;
 const short tamanhoByte = sizeof (byte);
 
 // Código de Byte
-const byte codigoVazio = 1;
+const byte codigoByte = 1;
 
 //////////////////////////////////////////////////
 

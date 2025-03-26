@@ -1,6 +1,8 @@
-#include "kikore/nucleo.h"
+#include "kikore/GC.h"
+
+// gcc -o main main.c && main
 
 void main (void)
 {
-    debugar_NUCLEO_H ();
+    finalizar (0, "");
 }

@@ -36,7 +36,7 @@ valor novo_campo (string nome, valor val)
     valor mnp = novo_manipulador (tmp);
     valor txt = novo_texto (nome);
     
-    anotar_configuracoes (mnp, vivo, rigido, codigoCampo);
+    anotar_configuracoes (mnp, vivo, modificadorAtual, codigoCampo);
     anotar_valor  (mnp,  txt);
     anotar_valor  (mnp,  val);
     

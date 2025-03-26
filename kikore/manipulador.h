@@ -28,14 +28,14 @@ const byte codigoManipulador = 8;
 ////////////////////////////////////////////////// 
 // DEFINIÇÃO DO SUBTIPO MANIPULADOR
 
-// Construtor de Manipulador
+// Construtor de Manipuladorz
 valor novo_manipulador (valor val)
 {
     verificarErro (val == NULL, "Input inexistente no construtor");
 
-    valor tmp = novo_valor (tamanhoByte + tamanhoInt + tamanhoPtr);   
+    valor tmp = novo_valor (tamanhoByte + tamanhoInt + tamanhoValor);   
 
-    acessar (byte, tmp, 0) = nova_configuracao (vivo, maleavel, codigoManipulador);
+    acessar (byte, tmp, 0) = nova_configuracao (vivo, modificadorAtual, codigoManipulador);
     acessar (int, tmp, tamanhoByte) = 0; // Indice
     acessar (ptr, tmp, tamanhoByte + tamanhoInt) = val;
 

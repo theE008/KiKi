@@ -11,6 +11,7 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
+#include <stdbool.h> // bool
 #include "valor.h"
 #include "byte.h"
 
@@ -19,12 +20,20 @@
 
 const bool  morto     =  true;
 const bool  vivo      = false;
-const byte maleavel  =    32;
-const byte constante =    64;
-const byte rigido    =    96;
+const byte codigoMaleavel  =    32;
+const byte codigoConstante =    64;
+const byte codigoRigido    =    96;
 
 // Código de Byte
-const byte codigoVazio = 6;
+const byte codigoConfig = 6;
+
+// O que está sendo usado agora no programa?
+byte modificadorAtual = 96;
+
+// Atualizadores
+#define maleavel  modificadorAtual =  codigoMaleavel;
+#define constante modificadorAtual = codigoConstante;
+#define rigido    modificadorAtual =   codigoRrigido;
 
 ////////////////////////////////////////////////// 
 // DEFINIÇÃO DO SUBTIPO CONFIG
@@ -51,7 +60,7 @@ byte pegar_tipo (valor val)
 {
     byte config = pegar_configuracao (val);
 
-    return (config % 64);
+    return (config % 32);
 }
 
 //////////////////////////////////////////////////

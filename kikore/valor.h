@@ -14,6 +14,11 @@
 #include "byte.h"
 #include "GC.h"
 
+////////////////////////////////////////////////// 
+// PROTÓTIPOS
+
+void registrarNaMemoria (ptr pon);
+
 //////////////////////////////////////////////////
 // Tipos Especiais
 
@@ -28,6 +33,9 @@ const short tamanhoFuncao = sizeof (funcao);
 // Código de Valor Vazio
 const byte codigoVazio = 0;
 
+// Garantia que não vai entrar em recursão
+bool usadoPelaMemoria = false;
+
 //////////////////////////////////////////////////
 // Construtores
 
@@ -40,7 +48,7 @@ valor novo_valor (size_t tam)
 
     loop (x, tam) * (tmp + x) = 0;
 
-    registrarNaMemoria (tmp);
+    // if (!usadoPelaMemoria) registrarNaMemoria (tmp);
 
     return tmp;
 }

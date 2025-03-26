@@ -17,13 +17,10 @@
 // Valores especiais
 
 // Topo da pilha
-valor pilhaDeMemoria;
+valor pilhaDeMemoria = NULL;
 
 // Contador de nível
 int nivel = 0;
-
-// Garantia que não vai entrar em recursão
-bool usadoPelaMemoria = false;
 
 //////////////////////////////////////////////////
 // CONSTRUTOR
@@ -117,7 +114,8 @@ void imprimirPilhaDeMemoria ()
     valor atual = pilhaDeMemoria;
 
     printf("================ PILHA DE MEMORIA ================\n");
-    while (atual != NULL) {
+    while (atual != NULL) 
+    {
         int nvl  = acessar (int, atual, tamanhoByte             );
         ptr dado = acessar (ptr, atual, tamanhoByte + tamanhoInt);
         printf("[Nivel: %3d, Ponteiro: %p]\n", nvl, dado);

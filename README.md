@@ -86,3 +86,9 @@ Atualmente, há um bit de propriedade ainda não utilizado. Esse bit poderia ser
 - Tipo `Localização`
 
 Isso abriria um vasto leque de possibilidades para a biblioteca, tornando-a altamente extensível.
+
+## Debug
+
+- Memória/nova_memória
+
+Estava quebrando ao dar free no manipulador. O free foi removido, consultar o porquê depois, lixo de memória sendo criado.
