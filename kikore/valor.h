@@ -11,8 +11,9 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include "byte.h"
-#include "GC.h"
+#include <stdbool.h> // para bool
+#include "byte.h"    // para byte
+#include "GC.h"      // para registrarNaMemoria
 
 ////////////////////////////////////////////////// 
 // PROTÓTIPOS
@@ -46,11 +47,46 @@ valor novo_valor (size_t tam)
 
     malocar (tmp, valor, tam);
 
-    loop (x, tam) * (tmp + x) = 0;
+    loop (x, tam) * (tmp + x) = 255; // 255 para teste
 
-    // if (!usadoPelaMemoria) registrarNaMemoria (tmp);
+    if (!usadoPelaMemoria) registrarNaMemoria (tmp);
 
     return tmp;
+}
+
+//////////////////////////////////////////////////
+// Imprimir
+
+// Imprime bit a bit
+valor imprimirBitsAteh (valor val, size_t tam)
+{
+    verificarErro (val == NULL, "Valor inexistente");
+
+    loop (i, tam)
+    {
+        for (int j = 7; j >= 0; j--)
+        {
+            printf ("%d", (val[i] >> j) & 1);
+        }
+        
+        printf (" ");
+    }
+    printf ("\n");
+
+    return val;
+}
+
+//////////////////////////////////////////////////
+// DEBUG
+
+// Testar a biblioteca
+int DEBUGAR_VALOR_H ()
+{
+    valor a = novo_valor (5);
+
+    imprimirBitsAteh (a, 5);
+
+    limpar (a);
 }
 
 //////////////////////////////////////////////////

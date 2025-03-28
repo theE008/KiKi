@@ -19,9 +19,6 @@
 // Topo da pilha
 valor pilhaDeMemoria = NULL;
 
-// Contador de nível
-int nivel = 0;
-
 //////////////////////////////////////////////////
 // CONSTRUTOR
 
@@ -32,7 +29,11 @@ __attribute__ ((constructor)) void construtor_pilhaDeMemoria ()
     
     verificarErro (dummy == NULL, "Erro na alocacao");
 
+    usadoPelaMemoria = true;
+
     pilhaDeMemoria = nova_memoria (dummy, NULL, -1);
+
+    usadoPelaMemoria = false;
 }
 
 //////////////////////////////////////////////////

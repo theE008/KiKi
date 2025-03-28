@@ -57,12 +57,15 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
+    "*.lash": "c",
+    "*.lass": "c",
     "gc.h": "c",
     "memoria.h": "c",
     "manipulador.h": "c",
     "texto.h": "c",
     "config.h": "c",
     "byte.h": "c",
-    "valor.h": "c"
+    "valor.h": "c",
+    "nucleo.h": "c"
   }
 }

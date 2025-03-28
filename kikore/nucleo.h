@@ -14,6 +14,20 @@
 #include <stdlib.h> //   exit
 #include <stdio.h>  // printf
 
+#include "GC.h" // para limpar a pilha
+
+//////////////////////////////////////////////////
+// Valores Especiais
+
+// Contador de nível
+int nivel = 0;
+
+//////////////////////////////////////////////////
+// PROTÓTIPOS
+
+void imprimirPilhaDeMemoria ();
+void limparPilhaDeMemoria ();
+
 //////////////////////////////////////////////////
 // COMPATIBILIDADE
 
@@ -68,6 +82,7 @@ long limpezas_feitas = 0;
 */       
 void finalizar (int val, string men)
 {
+    imprimirPilhaDeMemoria ();
 
      if (val) // detector de erro
         printf (VERMELHO "\n\n\tPROGRAMA FINALIZADO COM ERRO CODIGO '%d'\n\t%s\n\n" RESETAR, val, (men != NULL)? men: ""); 
@@ -76,10 +91,14 @@ void finalizar (int val, string men)
     ( VERDE
         "\n\n\t%s\n\t%s '%d' %s\n\n\t'%ld' %s\n\t'%ld' %s\n" RESETAR, 
         "FIM DO PROGRAMA", "Finalizado com um total de", 
-        alocacoes_feitas, "alocacoes feitas", memoria_usada, "memoria usada", limpezas_feitas, "limpezas feitas"
+        memoria_usada - 34, "memoria usada",
+        alocacoes_feitas - 2, "alocacoes feitas", 
+        limpezas_feitas - 1, "limpezas feitas"
     );
 
-    printf ("\n");
+    nivel = INT_MIN;
+
+    printf ("\nEXIT\n\n");
 
     exit (val);
 }
@@ -132,7 +151,7 @@ do {verificarErro (ptr == NULL, "Limpando ponteiro nulo"); limpezas_feitas ++; f
 // MACRO DE ACESSO
 
 // deixa o acesso mais alto nível
-#define acessar(tipo,val,indice) * ((tipo *) val + indice)  
+#define acessar(tipo,val,indice) * ((tipo *) ((unsigned char*) val + indice))
 
 //////////////////////////////////////////////////
 // Debug
@@ -157,44 +176,6 @@ printf ("\n\tlinha %d\n", __LINE__);
 verificarErro (val == NULL, "Input inexistente"); \
 byte tipo = pegar_tipo (val); \
 verificarErro (tipo != codSubtipo, "Valor recebido incompativel com a funcao");
-
-// Função de Debug
-int debugar_NUCLEO_H ()
-{
-    printf ("Iniciando testes da biblioteca NUCLEO_H...\n");
-
-    // Teste de alocação de memória
-    string teste_string;
-    malocar (teste_string, string, (50 * tamanhoChar));
-    snprintf (teste_string, 50, "Teste de alocacao de memoria");
-    printf ("String alocada: %s\n", teste_string);
-
-    // Teste de acesso por macro
-    acessar (char, teste_string, 5) = 'X';
-    printf ("String modificada: %s\n", teste_string);
-
-    // Teste de limpeza de memória
-    limpar (teste_string);
-    printf ("Memoria liberada com sucesso.\n");
-
-    DEBUGLINE_DEBUGLINE_DEBUGLINE_DEBUGLINE_DEBUGLINE;
-
-    loop (x, 100)
-    {
-        printf ("loop %d\n", x);
-
-        if (x == 50) fimDoLoop;
-    }
-
-    // Teste de verificação de erro
-    int erro_teste = 1;
-    verificarErro (erro_teste, "Erro simulado para teste.");
-
-    // Teste de finalização (comentado para evitar saída prematura)
-    // finalizar (0, "Testes concluídos com sucesso!");
-
-    return 0;
-}
 
 //////////////////////////////////////////////////
 

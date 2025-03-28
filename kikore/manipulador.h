@@ -20,10 +20,18 @@
 #include "GC.h"
 
 //////////////////////////////////////////////////
+// PROTÓTIPOS
+
+void imprimirPilhaDeMemoria ();
+
+//////////////////////////////////////////////////
 // Valores especiais
 
 // Código de Manipulador
 const byte codigoManipulador = 8;
+
+// Tamanho de Manipulador
+const byte tamanhoManipulador = sizeof (byte) + sizeof (int) + sizeof (valor);
 
 ////////////////////////////////////////////////// 
 // DEFINIÇÃO DO SUBTIPO MANIPULADOR
@@ -33,11 +41,11 @@ valor novo_manipulador (valor val)
 {
     verificarErro (val == NULL, "Input inexistente no construtor");
 
-    valor tmp = novo_valor (tamanhoByte + tamanhoInt + tamanhoValor);   
+    valor tmp = novo_valor (tamanhoManipulador);   
 
     acessar (byte, tmp, 0) = nova_configuracao (vivo, modificadorAtual, codigoManipulador);
     acessar (int, tmp, tamanhoByte) = 0; // Indice
-    acessar (ptr, tmp, tamanhoByte + tamanhoInt) = val;
+    acessar (valor, tmp, tamanhoByte + tamanhoInt) = val;
 
     return tmp;
 }
@@ -128,6 +136,18 @@ valor anotar_string (valor mnp, string str)
     }
 
     mudar_indice (mnp, x + tam * tamanhoChar);
+}
+
+//////////////////////////////////////////////////
+// DEBUG
+
+// Função de teste
+int DEBUGAR_MANIPULADOR_H ()
+{
+    //valor a = novo_valor (10);
+    //valor b = novo_manipulador (a);
+
+    //imprimirBitsAteh (b, tamanhoManipulador);
 }
 
 //////////////////////////////////////////////////

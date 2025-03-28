@@ -4,5 +4,9 @@
 
 void main (void)
 {
-    finalizar (0, "");
+    M
+        DEBUGAR_MANIPULADOR_H ();
+    W
+
+    finalizar (0, "Funcionando");
 }

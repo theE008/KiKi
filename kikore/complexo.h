@@ -34,7 +34,7 @@ valor novo_complexo (int qntsComponentes /*, valor arrComponentes*/)
     valor tmp = novo_valor (tamanhoByte + qntsComponentes * tamanhoCampo);
 
     return tmp;
-}
+} 
 
 
 //////////////////////////////////////////////////
