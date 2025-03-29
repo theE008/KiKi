@@ -41,9 +41,11 @@ valor novo_manipulador (valor val)
 {
     verificarErro (val == NULL, "Input inexistente no construtor");
 
+    // Manipulador não se importa com modificadores, iria dar um imenso trabalho
+
     valor tmp = novo_valor (tamanhoManipulador);   
 
-    acessar (byte, tmp, 0) = nova_configuracao (vivo, modificadorAtual, codigoManipulador);
+    acessar (byte, tmp, 0) = nova_configuracao (vivo, modificadorAtual (), codigoManipulador);
     acessar (int, tmp, tamanhoByte) = 0; // Indice
     acessar (valor, tmp, tamanhoByte + tamanhoInt) = val;
 
@@ -114,9 +116,15 @@ novaFuncaoDeAnotarNoManipulador (ptr   , tamanhoPtr   );
 novaFuncaoDeAnotarNoManipulador (int   , tamanhoInt   );
 
 // Anota as configurações
-valor anotar_configuracoes (valor mnp, bool vivo_morto, byte modificador, codigo tipo_dado)
+codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado)
 {
-    return anotar_byte (mnp, nova_configuracao (vivo_morto, modificador, tipo_dado));
+    codigo mod = modificadorAtual ();
+
+    variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual;
+
+    anotar_byte (mnp, nova_configuracao (vivo_morto, mod, tipo_dado));
+
+    return mod;
 }
 
 // Anota string

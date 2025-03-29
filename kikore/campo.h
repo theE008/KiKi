@@ -20,7 +20,7 @@
 // Valores especiais
 
 // Tamanho
-const short tamanhoCampo = tamanhoByte + 2 * tamanhoValor;
+const short tamanhoCampo = tamanhoByte + 2 * tamanhoValor; // quando maleável
 
 // Código de Campo
 const byte codigoCampo = 12;
@@ -34,15 +34,32 @@ valor novo_campo (string nome, valor val)
     verificarErro (nome == NULL, "String invalida");
     verificarErro (val  == NULL, "Valor invalido" );
 
-    valor tmp = novo_valor (tamanhoCampo);
-    naoSalvar valor mnp = novo_manipulador (tmp);
-    valor txt = novo_texto (nome);
-    
-    anotar_configuracoes (mnp, vivo, modificadorAtual, codigoCampo);
-    anotar_valor  (mnp,  txt);
-    anotar_valor  (mnp,  val);
+    valor tmp = NULL;
 
-    limpar (mnp);
+    if (modificadorAtual () == codigoMaleavel || modificadorAtual () == codigoFixado)
+    {
+        tmp = novo_valor (tamanhoCampo);
+        naoSalvar valor mnp = novo_manipulador (tmp);
+        anotar_configuracoes (mnp, vivo, codigoCampo); // ANOTE AS CONFIGURAÇÕES ANTES DE QUALQUER COISA
+        valor txt = novo_texto (nome);
+        anotar_valor  (mnp,  val); // Val primeiro para sintonizar com o de baixo
+        anotar_valor  (mnp,  txt);
+    
+        limpar (mnp);
+    }
+    else 
+    {
+        int tam = tamanhoDaString (nome);
+
+        tmp = novo_valor (tamanhoByte + tamanhoValor + tamanhoInt + tam * tamanhoChar);
+        naoSalvar valor mnp = novo_manipulador (tmp);
+        anotar_configuracoes (mnp, vivo, codigoCampo);
+        anotar_valor (mnp, val); // Eu deveria mudar isso????
+        anotar_int (mnp, tam);
+        anotar_string (mnp, nome);
+
+        limpar (mnp);
+    }
     
     return tmp;
 }

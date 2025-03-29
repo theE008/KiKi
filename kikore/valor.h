@@ -11,7 +11,6 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include <stdbool.h> // para bool
 #include "byte.h"    // para byte
 #include "GC.h"      // para registrarNaMemoria
 

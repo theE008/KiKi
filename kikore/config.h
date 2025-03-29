@@ -11,7 +11,6 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include <stdbool.h> // bool
 #include "valor.h"
 #include "byte.h"
 
@@ -20,32 +19,41 @@
 
 const bool  morto     =  true;
 const bool  vivo      = false;
-const byte codigoMaleavel  =    32;
-const byte codigoConstante =    64;
-const byte codigoRigido    =    96;
+codigo codigoMaleavel  =    32;
+codigo codigoConstante =    64;
+codigo codigoRigido    =    96;
+codigo codigoFixado    =     0;
 
 // Código de Config
 codigo codigoConfig = 6;
 
-// O que está sendo usado agora no programa?
-byte modificadorAtual = 96;
+// O que está sendo usado agora no programa
+codigo valorComumDaVariavelDeModificadorAtual = 32; // 32 (árvore de ponteiros)
+byte variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual; 
 
 // Atualizadores
-#define maleavel  modificadorAtual =  codigoMaleavel;
-#define constante modificadorAtual = codigoConstante;
-#define rigido    modificadorAtual =   codigoRrigido;
+#define maleavel  variavelDeModificadorAtual =  codigoMaleavel;
+#define constante variavelDeModificadorAtual = codigoConstante;
+#define rigido    variavelDeModificadorAtual =    codigoRigido;
+#define fixado    variavelDeModificadorAtual =    codigoFixado;
 
 ////////////////////////////////////////////////// 
 // DEFINIÇÃO DO SUBTIPO CONFIG
 
 // Construtor de configuração
-byte nova_configuracao (const bool vivo_morto, const byte modificador, codigo tipo_dado)
+byte nova_configuracao (const bool vivo_morto, codigo modificador, codigo tipo_dado)
 {
     return vivo_morto * 128 + modificador + tipo_dado;
 }
 
 //////////////////////////////////////////////////
 // FUNÇÕES DA CONFIGURAÇÃO
+
+// Pega o modificador atual e dá reset nele
+codigo modificadorAtual ()
+{
+    return variavelDeModificadorAtual;
+}
 
 // Retorna a configuração de um Valor
 byte pegar_configuracao (valor val)
@@ -66,3 +74,4 @@ codigo pegar_tipo (valor val)
 //////////////////////////////////////////////////
 
 #endif
+ 

@@ -31,10 +31,13 @@ valor novo_arranjo (valor * arr, unsigned int tam)
 {
     verificarErro (tam == 0, "Insira um tamanho valido no construtor de arranjos");
 
+    verificarModificador (codigoConstante, "Ainda nao codifiquei constante aqui");
+    verificarModificador (codigoRigido, "Ainda nao codifiquei rigido aqui");
+
     valor tmp = novo_valor (2 * tamanhoByte + tamanhoInt + tam * tamanhoValor);
     naoSalvar valor mnp = novo_manipulador (tmp);
 
-    anotar_configuracoes (mnp, vivo, modificadorAtual, codigoArranjo);
+    anotar_configuracoes (mnp, vivo, codigoArranjo);
     anotar_byte (mnp, pegar_configuracao (arr [0]));
     anotar_int (mnp, tam);
 

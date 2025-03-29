@@ -11,12 +11,12 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-//#include "GC.h"
+#include "GC.h"
 
 ////////////////////////////////////////////////// 
 // PROTÓTIPOS
 
-valor anotar_configuracoes (valor mnp, bool vivo_morto, byte modificador, byte tipo_dado);
+codigo anotar_configuracoes (valor mnp, bool vivo_morto, byte tipo_dado);
 valor anotar_string (valor mnp, string str);
 valor anotar_int (valor mnp, int t);
 valor novo_manipulador (valor val);
@@ -52,21 +52,24 @@ int tamanhoDaString (string entrada)
 valor novo_texto (string str)
 {
     verificarErro (str == NULL, "Input inexistente no construtor");
+    valor tmp = NULL;
+
+    // constante e rigido são normalmente a implementação comum do texto. Fixado não faz sentido.
+    // Texto não vai ter maleável nem nada, muito trabalho cara
 
     int tam = tamanhoDaString (str);
 
-    valor tmp = novo_valor (tamanhoByte + tamanhoInt + tam * tamanhoChar);
+    tmp = novo_valor (tamanhoByte + tamanhoInt + tam * tamanhoChar);
 
     naoSalvar valor mnp = novo_manipulador (tmp);
 
-    anotar_configuracoes (mnp, vivo, modificadorAtual, codigoTexto);
+    anotar_configuracoes (mnp, vivo, codigoTexto);
 
     anotar_int (mnp, tam);
 
     anotar_string (mnp, str);
 
     limpar (mnp);
-
     return tmp;
 }
 

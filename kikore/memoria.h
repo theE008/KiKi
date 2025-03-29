@@ -30,11 +30,14 @@ valor nova_memoria (ptr val, valor prox, int nivel)
 {
     verificarErro (val == NULL, "Input inexistente");
 
+    // Memória não precisa de modificadores, não faz sentido (só const, que não é aqui que implemento)
+    // Memória não se importa com modificadores, iria dar um imenso trabalho
+
     valor tmp = novo_valor (tamanhoByte + tamanhoInt + tamanhoPtr + tamanhoValor);
 
     naoSalvar valor mnp = novo_manipulador (tmp);
 
-    anotar_configuracoes (mnp, vivo, modificadorAtual, codigoMemoria);
+    anotar_configuracoes (mnp, vivo, codigoMemoria);
     anotar_int    (mnp, nivel);
     anotar_ptr    (mnp,   val);
     anotar_valor  (mnp,  prox);

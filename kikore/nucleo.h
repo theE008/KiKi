@@ -11,8 +11,9 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include <stdlib.h> //   exit
-#include <stdio.h>  // printf
+#include <stdbool.h> // bool
+#include <stdlib.h> //  exit
+#include <stdio.h>  //  printf
 
 #include "GC.h" // para limpar a pilha
 
@@ -31,9 +32,9 @@ void limparPilhaDeMemoria ();
 //////////////////////////////////////////////////
 // COMPATIBILIDADE
 
-#ifndef __func__
-#define __func__ "<funcao_desconhecida>"
-#endif
+//#ifndef __func__
+//#define __func__ "<funcao_desconhecida>"
+//#endif
 
 //////////////////////////////////////////////////
 // CORES PARA O TERMINAL
@@ -113,7 +114,7 @@ void finalizar (int val, string men)
 /**
  * Descrição: Finaliza o programa se um erro for percebido.
 */   
-void VERIFY_ERROR (const string mensagem, string arquivo, const string funcao, int erro, int linha)
+void VERIFY_ERROR (const string mensagem, string arquivo, const char * funcao, int erro, int linha)
 {
     if (erro)
     {
@@ -180,6 +181,9 @@ printf ("\n\tlinha %d\n", __LINE__);
 verificarErro (val == NULL, "Input inexistente"); \
 byte tipo = pegar_tipo (val); \
 verificarErro (tipo != codSubtipo, "Valor recebido incompativel com a funcao");
+
+#define verificarModificador(naoPodeSer,porque) \
+if (modificadorAtual () == naoPodeSer) {verificarErro (naoPodeSer, porque);}
 
 //////////////////////////////////////////////////
 

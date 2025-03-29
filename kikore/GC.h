@@ -48,7 +48,9 @@ void registrarNaMemoria (ptr pon)
     {
         usadoPelaMemoria = true;
 
-        valor tmp = nova_memoria (pon, pilhaDeMemoria, nivel);
+        codigo cdg = modificadorAtual ();
+        maleavel valor tmp = nova_memoria (pon, pilhaDeMemoria, nivel);
+        variavelDeModificadorAtual = cdg;
     
         pilhaDeMemoria = tmp;
     
