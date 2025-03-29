@@ -180,7 +180,7 @@ printf ("\n\tlinha %d\n", __LINE__);
 #define verificarSubtipo(val,codSubtipo) \
 verificarErro (val == NULL, "Input inexistente"); \
 byte tipo = pegar_tipo (val); \
-verificarErro (tipo != codSubtipo, "Valor recebido incompativel com a funcao");
+verificarErro (tipo * (tipo != codSubtipo), "Valor recebido incompativel com a funcao");
 
 #define verificarModificador(naoPodeSer,porque) \
 if (modificadorAtual () == naoPodeSer) {verificarErro (naoPodeSer, porque);}

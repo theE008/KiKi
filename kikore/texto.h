@@ -45,6 +45,19 @@ int tamanhoDaString (string entrada)
     return tamanho - 1;
 }
 
+// Compara duas strings lexicograficamente
+int compararStrings (char* a, char* b) 
+{
+    while (*a && *b && *a == *b) 
+    {
+        a++;
+        b++;
+    }
+    
+    return (unsigned char)(*a) - (unsigned char)(*b);
+}
+
+
 ////////////////////////////////////////////////// 
 // DEFINIÇÃO DO SUBTIPO TEXTO
 

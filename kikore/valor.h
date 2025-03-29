@@ -11,12 +11,15 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
+#include "config.h"
+
 #include "byte.h"    // para byte
 #include "GC.h"      // para registrarNaMemoria
 
 ////////////////////////////////////////////////// 
 // PROTÓTIPOS
 
+int compararStrings (char* a, char* b);
 void registrarNaMemoria (ptr pon);
 
 //////////////////////////////////////////////////
@@ -62,6 +65,30 @@ valor novo_valor (size_t tam)
     if (!usadoPelaMemoria) registrarNaMemoria (tmp);
 
     return tmp;
+}
+
+//////////////////////////////////////////////////
+// Funções gerais
+
+// Compara valores de vários subtipos
+int comparar (valor a, valor b)
+{
+    verificarErro (a == NULL, "Valor A inexistente no comparar");
+    verificarErro (b == NULL, "Valor B inexistente no comparar");
+    int tmp = 0;
+
+    codigo cfg_a = acessar (byte, a, 0) % 32;
+    codigo cfg_b = acessar (byte, b, 0) % 32;
+
+    if (cfg_a == 9)
+    {
+        if (cfg_b == 9)
+        {
+            tmp = compararStrings (); // agora uma função de texto -> string
+        }
+    }
+
+    return 0;
 }
 
 //////////////////////////////////////////////////

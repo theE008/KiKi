@@ -1,17 +1,20 @@
 #include "kikore/arranjo.h"
 #include "kikore/campo.h"
+#include "kikore/BST.h"
 
 // gcc -o main main.c && main
 
 void main (void)
 {
     M
-        valor a = novo_texto ("abcd");
+        valor z = novo_texto ("aa");
+        valor a = nova_BST (z);
 
-        constante valor b = novo_campo ("aaa", a);
+        valor b = novo_texto ("bb");
 
-        imprimirBitsAteh (b, 1 + 8 + 4 + 3);
-
+        adicionar (a, b);
+        
+        imprimirBitsAteh (a, 25);
     W
 
     finalizar (0, "Funcionando");

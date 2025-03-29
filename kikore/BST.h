@@ -11,7 +11,8 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include "GC.h" // Para ir pegando tudo
+#include "GC.h"  // Para ir pegando tudo
+#include "int.h" // Para para_int
 
 //////////////////////////////////////////////////
 // Valores especiais
@@ -22,7 +23,7 @@ codigo codigoBST = 19;
 ////////////////////////////////////////////////// 
 // DEFINIÇÃO DO SUBTIPO BST
 
-// Construtor de BST
+// Construtor de Célula
 valor nova_BST (valor nucleo)
 {
     verificarErro (nucleo == NULL, "Entrada nula no construtor");
@@ -36,7 +37,6 @@ valor nova_BST (valor nucleo)
         anotar_valor (mnp, nucleo);
 
         // O resto fica vazio
-
         anotar_valor (mnp, NULL);
         anotar_valor (mnp, NULL);
         
@@ -52,6 +52,34 @@ valor nova_BST (valor nucleo)
     }
 
     return tmp;
+}
+
+// Adiciona na árvore. Usa a função comparador para dizer qual deve ir antes e depois
+void adicionar (valor val, valor oque)
+{
+    verificarSubtipo (val, codigoBST); // <- alerta um erro "inexistente", remover dá nullpointerExe
+    verificarErro (oque == NULL, "Valor vazio em adicionar");
+
+    int resp = comparar (acessar (valor, val, tamanhoByte), oque);
+
+    if (resp > 0) 
+    {
+        if (acessar (valor, val, tamanhoByte + 2 * tamanhoValor) == NULL) 
+            acessar (valor, val, tamanhoByte + 2 * tamanhoValor) = nova_BST (oque);
+        else 
+            adicionar (acessar (valor, val, tamanhoByte + 2 * tamanhoValor), oque);
+    }
+    else if (resp < 0)
+    {
+        if (acessar (valor, val, tamanhoByte + tamanhoValor) == NULL) 
+            acessar (valor, val, tamanhoByte + tamanhoValor) = nova_BST (oque);
+        else 
+            adicionar (acessar (valor, val, tamanhoByte + tamanhoValor), oque);        
+    }
+    else 
+    {
+        acessar (valor, val, tamanhoByte) = nova_BST (oque);
+    }
 }
 
 //////////////////////////////////////////////////
