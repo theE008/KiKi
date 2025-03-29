@@ -24,8 +24,8 @@ const byte codigoMaleavel  =    32;
 const byte codigoConstante =    64;
 const byte codigoRigido    =    96;
 
-// Código de Byte
-const byte codigoConfig = 6;
+// Código de Config
+codigo codigoConfig = 6;
 
 // O que está sendo usado agora no programa?
 byte modificadorAtual = 96;
@@ -39,7 +39,7 @@ byte modificadorAtual = 96;
 // DEFINIÇÃO DO SUBTIPO CONFIG
 
 // Construtor de configuração
-byte nova_configuracao (const bool vivo_morto, const byte modificador, const byte tipo_dado)
+byte nova_configuracao (const bool vivo_morto, const byte modificador, codigo tipo_dado)
 {
     return vivo_morto * 128 + modificador + tipo_dado;
 }
@@ -56,7 +56,7 @@ byte pegar_configuracao (valor val)
 }
 
 // Retorna um byte de tipo de um Valor simples
-byte pegar_tipo (valor val)
+codigo pegar_tipo (valor val)
 {
     byte config = pegar_configuracao (val);
 

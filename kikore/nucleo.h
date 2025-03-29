@@ -98,6 +98,10 @@ void finalizar (int val, string men)
 
     nivel = INT_MIN;
 
+    limparPilhaDeMemoria ();
+
+    // imprimirPilhaDeMemoria ();
+
     printf ("\nEXIT\n\n");
 
     exit (val);

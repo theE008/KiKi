@@ -11,6 +11,8 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
+#include "GC.h"
+
 #include "manipulador.h"
 #include "texto.h"
 
@@ -33,12 +35,14 @@ valor novo_campo (string nome, valor val)
     verificarErro (val  == NULL, "Valor invalido" );
 
     valor tmp = novo_valor (tamanhoCampo);
-    valor mnp = novo_manipulador (tmp);
+    naoSalvar valor mnp = novo_manipulador (tmp);
     valor txt = novo_texto (nome);
     
     anotar_configuracoes (mnp, vivo, modificadorAtual, codigoCampo);
     anotar_valor  (mnp,  txt);
     anotar_valor  (mnp,  val);
+
+    limpar (mnp);
     
     return tmp;
 }

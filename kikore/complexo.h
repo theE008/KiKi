@@ -17,6 +17,7 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
+#include "arranjo.h"
 #include "campo.h"
 
 //////////////////////////////////////////////////
@@ -29,11 +30,9 @@ const byte codigoComplexo = 13;
 // DEFINIÇÃO DO SUBTIPO COMPLEXO
 
 // Construtor de Complexo
-valor novo_complexo (int qntsComponentes /*, valor arrComponentes*/)
+valor novo_complexo (int qntsComponentes, valor arr)
 {
-    valor tmp = novo_valor (tamanhoByte + qntsComponentes * tamanhoCampo);
-
-    return tmp;
+    // TODOS OS ARRANJOS DE CAMPOS SERÃO TIPOS COMPLEXOS. TALVEZ LISTA SEJA MELHOR
 } 
 
 

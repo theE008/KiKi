@@ -31,7 +31,7 @@ void imprimirPilhaDeMemoria ();
 const byte codigoManipulador = 8;
 
 // Tamanho de Manipulador
-const byte tamanhoManipulador = sizeof (byte) + sizeof (int) + sizeof (valor);
+const byte tamanhoManipulador = sizeof (byte) + sizeof (int) + sizeof (valor); // 13
 
 ////////////////////////////////////////////////// 
 // DEFINIÇÃO DO SUBTIPO MANIPULADOR
@@ -114,7 +114,7 @@ novaFuncaoDeAnotarNoManipulador (ptr   , tamanhoPtr   );
 novaFuncaoDeAnotarNoManipulador (int   , tamanhoInt   );
 
 // Anota as configurações
-valor anotar_configuracoes (valor mnp, bool vivo_morto, byte modificador, byte tipo_dado)
+valor anotar_configuracoes (valor mnp, bool vivo_morto, byte modificador, codigo tipo_dado)
 {
     return anotar_byte (mnp, nova_configuracao (vivo_morto, modificador, tipo_dado));
 }

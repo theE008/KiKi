@@ -32,14 +32,14 @@ valor nova_memoria (ptr val, valor prox, int nivel)
 
     valor tmp = novo_valor (tamanhoByte + tamanhoInt + tamanhoPtr + tamanhoValor);
 
-    valor mnp = novo_manipulador (tmp);
+    naoSalvar valor mnp = novo_manipulador (tmp);
 
     anotar_configuracoes (mnp, vivo, modificadorAtual, codigoMemoria);
     anotar_int    (mnp, nivel);
     anotar_ptr    (mnp,   val);
     anotar_valor  (mnp,  prox);
     
-    if (usadoPelaMemoria) limpar (mnp);
+    limpar (mnp);
 
     return tmp;
 }

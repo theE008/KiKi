@@ -57,13 +57,15 @@ valor novo_texto (string str)
 
     valor tmp = novo_valor (tamanhoByte + tamanhoInt + tam * tamanhoChar);
 
-    valor mnp = novo_manipulador (tmp);
+    naoSalvar valor mnp = novo_manipulador (tmp);
 
     anotar_configuracoes (mnp, vivo, modificadorAtual, codigoTexto);
 
     anotar_int (mnp, tam);
 
     anotar_string (mnp, str);
+
+    limpar (mnp);
 
     return tmp;
 }
