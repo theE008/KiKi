@@ -100,7 +100,7 @@ int usar_indice (valor mnp, int indice)
 // FUNÇÕES DE ANOTAR
  
 // Macro de definição de funções de anotaçoes
-#define novaFuncaoDeAnotarNoManipulador(tipo,tamanho) \
+#define novaFuncaoDeAnotarELerNoManipulador(tipo,tamanho) \
 valor anotar_##tipo (valor mnp, tipo t) \
 { \
     verificarSubtipo (mnp, codigoManipulador); \
@@ -108,12 +108,20 @@ valor anotar_##tipo (valor mnp, tipo t) \
     valor val = pegar_valor (mnp); \
     acessar (tipo, val, x) = t; \
     return mnp; \
+} \
+tipo ler_##tipo (valor mnp) \
+{                           \
+    verificarSubtipo    (mnp, codigoManipulador); \
+    int x = usar_indice (mnp,           tamanho); \
+    valor val = pegar_valor (mnp); \
+    return acessar (tipo, val, x); \
 }
 
-novaFuncaoDeAnotarNoManipulador (valor , tamanhoValor );
-novaFuncaoDeAnotarNoManipulador (byte  , tamanhoByte  );
-novaFuncaoDeAnotarNoManipulador (ptr   , tamanhoPtr   );
-novaFuncaoDeAnotarNoManipulador (int   , tamanhoInt   );
+novaFuncaoDeAnotarELerNoManipulador (valor , tamanhoValor );
+novaFuncaoDeAnotarELerNoManipulador (byte  , tamanhoByte  );
+novaFuncaoDeAnotarELerNoManipulador (char  , tamanhoChar  );
+novaFuncaoDeAnotarELerNoManipulador (ptr   , tamanhoPtr   );
+novaFuncaoDeAnotarELerNoManipulador (int   , tamanhoInt   );
 
 // Anota as configurações
 codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado)

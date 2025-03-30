@@ -7,10 +7,11 @@
 void main (void)
 {
     M
-        valor z = novo_texto ("aa");
-        valor a = nova_BST (z);
+        valor y = novo_campo ("Tipo", novo_texto ("Teste"));
 
-        valor b = novo_texto ("bb");
+        valor a = novo_complexo (y);
+
+        valor b = novo_campo ("Valor", novo_texto ("555"));
 
         adicionar (a, b);
         

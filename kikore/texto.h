@@ -20,6 +20,9 @@ codigo anotar_configuracoes (valor mnp, bool vivo_morto, byte tipo_dado);
 valor anotar_string (valor mnp, string str);
 valor anotar_int (valor mnp, int t);
 valor novo_manipulador (valor val);
+byte ler_byte (valor mnp);
+char ler_char (valor mnp);
+int  ler_int  (valor mnp);
 
 //////////////////////////////////////////////////
 // Valores especiais
@@ -54,7 +57,7 @@ int compararStrings (char* a, char* b)
         b++;
     }
     
-    return (unsigned char)(*a) - (unsigned char)(*b);
+    return (unsigned char)(*b) - (unsigned char)(*a); // negativo, a é maior
 }
 
 
@@ -81,6 +84,31 @@ valor novo_texto (string str)
     anotar_int (mnp, tam);
 
     anotar_string (mnp, str);
+
+    limpar (mnp);
+    return tmp;
+}
+
+//////////////////////////////////////////////////
+// CONVERSÕES
+
+// Texto -> string
+string para_string (valor texto)
+{
+    verificarSubtipo (texto, codigoTexto);
+    string tmp = NULL;
+    naoSalvar valor mnp = novo_manipulador (texto);
+
+    ler_byte (mnp);
+    int tam = ler_int (mnp);
+    tmp = malloc (tam); // não coloquei + 1
+
+    loop (x, tam)
+    {
+        tmp [x] = ler_char (mnp);
+    }
+
+    tmp [tam] = '\0';
 
     limpar (mnp);
     return tmp;

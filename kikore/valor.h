@@ -16,12 +16,6 @@
 #include "byte.h"    // para byte
 #include "GC.h"      // para registrarNaMemoria
 
-////////////////////////////////////////////////// 
-// PROTÓTIPOS
-
-int compararStrings (char* a, char* b);
-void registrarNaMemoria (ptr pon);
-
 //////////////////////////////////////////////////
 // Tipos Especiais
 
@@ -47,6 +41,13 @@ bool naoSalvarUmaVez = false;
 
 // DEFINE para simplificar
 #define naoSalvar naoSalvarUmaVez = true;
+
+////////////////////////////////////////////////// 
+// PROTÓTIPOS (necessitam estar abaixo da declaração de valor)
+
+int compararStrings (char* a, char* b);
+void registrarNaMemoria (ptr pon);
+string para_string (valor texto);
 
 //////////////////////////////////////////////////
 // Construtores
@@ -80,15 +81,30 @@ int comparar (valor a, valor b)
     codigo cfg_a = acessar (byte, a, 0) % 32;
     codigo cfg_b = acessar (byte, b, 0) % 32;
 
-    if (cfg_a == 9)
+    if (cfg_a == 9) // se for string
     {
-        if (cfg_b == 9)
+        if (cfg_b == 9) // se ambos forem string
         {
-            tmp = compararStrings (); // agora uma função de texto -> string
+            string str1 = para_string (a); // Implementar um compararTexto e apagar o compararStrings
+            string str2 = para_string (b); // Complexidade desnecessária e fora do tema da biblioteca
+
+            tmp = compararStrings (str1, str2); // agora uma função de texto -> string
+
+            free (str1);
+            free (str2);
+        }
+    }
+    else if (cfg_a == 12) // se for campo
+    {
+        if (cfg_b == 12) // se ambos forem campos
+        {
+            // campo varia, eu REALMENTE DEVERIA deixar esse conceito descansar um pouco
+
+            // Funções de dentro das classes para fazer tudo por mim, e aí eu só uso, parece ser way2go
         }
     }
 
-    return 0;
+    return tmp;
 }
 
 //////////////////////////////////////////////////

@@ -17,11 +17,17 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include "arranjo.h"
 #include "campo.h"
+#include "BST.h"
+
+//////////////////////////////////////////////////
+// Protótipos
+
+valor nova_BST (valor nucleo);
 
 //////////////////////////////////////////////////
 // Valores especiais
+
 
 // Código de Complexo
 const byte codigoComplexo = 13;
@@ -30,9 +36,27 @@ const byte codigoComplexo = 13;
 // DEFINIÇÃO DO SUBTIPO COMPLEXO
 
 // Construtor de Complexo
-valor novo_complexo (int qntsComponentes, valor arr)
+valor novo_complexo (valor comp)
 {
-    // TODOS OS ARRANJOS DE CAMPOS SERÃO TIPOS COMPLEXOS. TALVEZ LISTA SEJA MELHOR
+    verificarSubtipo (comp, codigoCampo);
+    valor tmp = NULL;
+    
+    if (modificadorAtual () == codigoMaleavel || modificadorAtual () == codigoFixado)
+    {
+        tmp = nova_BST (comp);
+
+        codigo mod = modificadorAtual ();
+    
+        variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual;
+    
+        acessar (byte, tmp, 0) = nova_configuracao (vivo, mod, codigoComplexo);
+    }
+    else 
+    {
+        verificarErro (1, "Nao implementado");
+    }
+
+    return tmp;
 } 
 
 

@@ -172,15 +172,15 @@ printf ("\n\tlinha %d\n", __LINE__);
  * Descrição: Uma forma mais enxuta do VERIFY_ERROR, tendo apenas um valor 
  * como condição. Se o valor for verdadeiro, a função dispara um erro.
 */  
-#define verificarErro(erro,msg) VERIFY_ERROR (msg, __FILE__, __func__, erro, __LINE__);
+#define verificarErro(erro,msg) VERIFY_ERROR (msg, __FILE__, __func__, erro, __LINE__)
 
 /**
  * Descrição: Uma forma mais enxuta do verificarErro, focada em subtipos.
 */  
 #define verificarSubtipo(val,codSubtipo) \
-verificarErro (val == NULL, "Input inexistente"); \
+do {verificarErro (val == NULL, "Input inexistente"); \
 byte tipo = pegar_tipo (val); \
-verificarErro (tipo * (tipo != codSubtipo), "Valor recebido incompativel com a funcao");
+verificarErro (tipo * (tipo != codSubtipo), "Valor recebido incompativel com a funcao"); } while (0)
 
 #define verificarModificador(naoPodeSer,porque) \
 if (modificadorAtual () == naoPodeSer) {verificarErro (naoPodeSer, porque);}

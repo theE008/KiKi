@@ -13,6 +13,7 @@
 
 #include "GC.h"  // Para ir pegando tudo
 #include "int.h" // Para para_int
+#include "complexo.h" // para adicionar em valores complexos
 
 //////////////////////////////////////////////////
 // Valores especiais
@@ -57,8 +58,14 @@ valor nova_BST (valor nucleo)
 // Adiciona na árvore. Usa a função comparador para dizer qual deve ir antes e depois
 void adicionar (valor val, valor oque)
 {
-    verificarSubtipo (val, codigoBST); // <- alerta um erro "inexistente", remover dá nullpointerExe
     verificarErro (oque == NULL, "Valor vazio em adicionar");
+    // verificarErro (val  == NULL, "Valor vazio em adicionar"); // não acho que necessita
+    
+    if (pegar_tipo (val) == codigoComplexo) 
+    {
+        verificarSubtipo (oque, codigoCampo); // apenas campos podem ser adicionados em Val. Complexos 
+    }
+    else verificarSubtipo (val, codigoBST);
 
     int resp = comparar (acessar (valor, val, tamanhoByte), oque);
 
