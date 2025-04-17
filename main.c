@@ -14,6 +14,8 @@ void main (void)
         valor b = novo_campo ("Valor", novo_texto ("555"));
 
         adicionar (a, b);
+
+        maleavel valor bst = nova_BST (a);
         
         imprimirBitsAteh (a, 25);
     W

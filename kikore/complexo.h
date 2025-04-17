@@ -40,16 +40,23 @@ valor novo_complexo (valor comp)
 {
     verificarSubtipo (comp, codigoCampo);
     valor tmp = NULL;
+
+    codigo mod = modificadorAtual ();
     
-    if (modificadorAtual () == codigoMaleavel || modificadorAtual () == codigoFixado)
+    if 
+    (
+        mod == codigoMaleavel || 
+        mod == codigoFixado   || 
+        mod == codigoPadrao   
+    )
     {
         tmp = nova_BST (comp);
 
-        codigo mod = modificadorAtual ();
+        //codigo mod = modificadorAtual ();
     
-        variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual;
+        //variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual;
     
-        acessar (byte, tmp, 0) = nova_configuracao (vivo, mod, codigoComplexo);
+        //acessar (byte, tmp, 0) = nova_configuracao (vivo, mod, codigoComplexo);
     }
     else 
     {

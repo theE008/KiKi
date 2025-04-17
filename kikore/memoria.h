@@ -37,7 +37,7 @@ valor nova_memoria (ptr val, valor prox, int nivel)
 
     naoSalvar valor mnp = novo_manipulador (tmp);
 
-    anotar_configuracoes (mnp, vivo, codigoMemoria);
+    anotar_configuracoes (mnp, vivo, codigoMemoria, codigoConstante);
     anotar_int    (mnp, nivel);
     anotar_ptr    (mnp,   val);
     anotar_valor  (mnp,  prox);

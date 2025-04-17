@@ -45,7 +45,10 @@ valor novo_manipulador (valor val)
 
     valor tmp = novo_valor (tamanhoManipulador);   
 
-    acessar (byte, tmp, 0) = nova_configuracao (vivo, modificadorAtual (), codigoManipulador);
+    acessar (byte, tmp, 0) = nova_configuracao 
+    (
+        vivo, codigoManipulador, codigoRigido
+    );
     acessar (int, tmp, tamanhoByte) = 0; // Indice
     acessar (valor, tmp, tamanhoByte + tamanhoInt) = val;
 
@@ -124,15 +127,11 @@ novaFuncaoDeAnotarELerNoManipulador (ptr   , tamanhoPtr   );
 novaFuncaoDeAnotarELerNoManipulador (int   , tamanhoInt   );
 
 // Anota as configurações
-codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado)
+codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado, codigo modPadrao)
 {
-    codigo mod = modificadorAtual ();
+    anotar_byte (mnp, nova_configuracao (vivo_morto, tipo_dado, modPadrao));
 
-    variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual;
-
-    anotar_byte (mnp, nova_configuracao (vivo_morto, mod, tipo_dado));
-
-    return mod;
+    return modPadrao;
 }
 
 // Anota string

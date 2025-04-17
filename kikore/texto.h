@@ -16,7 +16,7 @@
 ////////////////////////////////////////////////// 
 // PROTÓTIPOS
 
-codigo anotar_configuracoes (valor mnp, bool vivo_morto, byte tipo_dado);
+codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado, codigo modPadrao);
 valor anotar_string (valor mnp, string str);
 valor anotar_int (valor mnp, int t);
 valor novo_manipulador (valor val);
@@ -79,7 +79,7 @@ valor novo_texto (string str)
 
     naoSalvar valor mnp = novo_manipulador (tmp);
 
-    anotar_configuracoes (mnp, vivo, codigoTexto);
+    anotar_configuracoes (mnp, vivo, codigoTexto, codigoRigido);
 
     anotar_int (mnp, tam);
 

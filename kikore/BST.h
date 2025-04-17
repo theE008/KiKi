@@ -30,11 +30,18 @@ valor nova_BST (valor nucleo)
     verificarErro (nucleo == NULL, "Entrada nula no construtor");
     valor tmp = NULL;
 
-    if (modificadorAtual () == codigoMaleavel || modificadorAtual () == codigoFixado)
+    codigo mod = modificadorAtual ();
+
+    if 
+    (
+        mod == codigoMaleavel || 
+        mod == codigoFixado   ||
+        mod == codigoPadrao
+    )
     {
         tmp = novo_valor (tamanhoByte + 3 * tamanhoValor); // valor do nó, esquerda, direita
         naoSalvar valor mnp = novo_manipulador (tmp);
-        anotar_configuracoes (mnp, vivo, codigoBST);  
+        anotar_configuracoes (mnp, vivo, codigoBST, codigoMaleavel);  
         anotar_valor (mnp, nucleo);
 
         // O resto fica vazio

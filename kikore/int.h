@@ -28,7 +28,7 @@ valor novo_int (int val)
     valor tmp = novo_valor (tamanhoByte + tamanhoInt);
     naoSalvar valor mnp = novo_manipulador (mnp);
 
-    anotar_configuracoes (mnp, vivo, codigoInt);
+    anotar_configuracoes (mnp, vivo, codigoInt, codigoRigido);
     anotar_int (mnp, val);
 
     limpar (mnp);

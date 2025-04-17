@@ -37,7 +37,7 @@ valor novo_arranjo (valor * arr, unsigned int tam)
     valor tmp = novo_valor (2 * tamanhoByte + tamanhoInt + tam * tamanhoValor);
     naoSalvar valor mnp = novo_manipulador (tmp);
 
-    anotar_configuracoes (mnp, vivo, codigoArranjo);
+    anotar_configuracoes (mnp, vivo, codigoArranjo, codigoMaleavel);
     anotar_byte (mnp, pegar_configuracao (arr [0]));
     anotar_int (mnp, tam);
 

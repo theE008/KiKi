@@ -15,14 +15,20 @@
 #include "byte.h"
 
 //////////////////////////////////////////////////
+// PROTÓTIPOS
+
+codigo modificadorAtual ();
+
+//////////////////////////////////////////////////
 // Valores especiais
 
-const bool  morto     =  true;
-const bool  vivo      = false;
-codigo codigoMaleavel  =    32;
+const bool  morto      =  true;
+const bool  vivo       = false;
 codigo codigoConstante =    64;
+codigo codigoMaleavel  =    32;
 codigo codigoRigido    =    96;
 codigo codigoFixado    =     0;
+codigo codigoPadrao    =   255;
 
 // Código de Config
 codigo codigoConfig = 6;
@@ -38,12 +44,22 @@ byte variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual;
 #define fixado    variavelDeModificadorAtual =    codigoFixado;
 
 ////////////////////////////////////////////////// 
-// DEFINIÇÃO DO SUBTIPO CONFIG
+// DEFINIÇÃO DO BYTE CONFIG
 
 // Construtor de configuração
-byte nova_configuracao (const bool vivo_morto, codigo modificador, codigo tipo_dado)
+byte nova_configuracao (const bool vivo_morto, codigo tipo_dado, codigo padrao)
 {
-    return vivo_morto * 128 + modificador + tipo_dado;
+    codigo modificador = modificadorAtual ();
+
+    verificarErro 
+    (
+        modificador == padrao == codigoPadrao,  "Input inexistente nas funcoes de configuracao"
+    );
+
+    if (modificador == codigoPadrao)
+        return vivo_morto * 128 + padrao + tipo_dado;
+    else
+        return vivo_morto * 128 + modificador + tipo_dado;
 }
 
 //////////////////////////////////////////////////
@@ -52,7 +68,10 @@ byte nova_configuracao (const bool vivo_morto, codigo modificador, codigo tipo_d
 // Pega o modificador atual e dá reset nele
 codigo modificadorAtual ()
 {
-    return variavelDeModificadorAtual;
+    byte tmp = variavelDeModificadorAtual;
+    variavelDeModificadorAtual = codigoPadrao;
+
+    return tmp;
 }
 
 // Retorna a configuração de um Valor

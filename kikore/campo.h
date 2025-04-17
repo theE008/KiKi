@@ -36,11 +36,13 @@ valor novo_campo (string nome, valor val)
 
     valor tmp = NULL;
 
-    if (modificadorAtual () == codigoMaleavel || modificadorAtual () == codigoFixado)
+    codigo mod = modificadorAtual ();
+
+    if (mod == codigoMaleavel || mod == codigoFixado)
     {
         tmp = novo_valor (tamanhoCampo);
         naoSalvar valor mnp = novo_manipulador (tmp);
-        anotar_configuracoes (mnp, vivo, codigoCampo); // ANOTE AS CONFIGURAÇÕES ANTES DE QUALQUER COISA
+        anotar_configuracoes (mnp, vivo, codigoCampo, codigoMaleavel); // ANOTE AS CONFIGURAÇÕES ANTES DE QUALQUER COISA
         valor txt = novo_texto (nome);
         anotar_valor  (mnp,  val); // Val primeiro para sintonizar com o de baixo
         anotar_valor  (mnp,  txt);
@@ -53,7 +55,7 @@ valor novo_campo (string nome, valor val)
 
         tmp = novo_valor (tamanhoByte + tamanhoValor + tamanhoInt + tam * tamanhoChar);
         naoSalvar valor mnp = novo_manipulador (tmp);
-        anotar_configuracoes (mnp, vivo, codigoCampo);
+        anotar_configuracoes (mnp, vivo, codigoCampo, codigoRigido);
         anotar_valor (mnp, val); // Eu deveria mudar isso????
         anotar_int (mnp, tam);
         anotar_string (mnp, nome);
