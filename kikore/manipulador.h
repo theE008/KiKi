@@ -47,7 +47,7 @@ valor novo_manipulador (valor val)
 
     acessar (byte, tmp, 0) = nova_configuracao 
     (
-        vivo, codigoManipulador, codigoRigido
+        vivo, codigoManipulador, codigoRigido, codigoRigido
     );
     acessar (int, tmp, tamanhoByte) = 0; // Indice
     acessar (valor, tmp, tamanhoByte + tamanhoInt) = val;
@@ -126,10 +126,12 @@ novaFuncaoDeAnotarELerNoManipulador (char  , tamanhoChar  );
 novaFuncaoDeAnotarELerNoManipulador (ptr   , tamanhoPtr   );
 novaFuncaoDeAnotarELerNoManipulador (int   , tamanhoInt   );
 
-// Anota as configurações
+// Anota as configurações (NÃO MEXA AQUI, NÃO ESTÁ ERRADO)
+// A função nova_configuracao NÃO PODE mudar o valor da configuração, já que o construtor de
+// Configuração PRECISA dessa função.
 codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado, codigo modPadrao)
 {
-    anotar_byte (mnp, nova_configuracao (vivo_morto, tipo_dado, modPadrao));
+    anotar_byte (mnp, nova_configuracao (vivo_morto, tipo_dado, modificadorAtual (), modPadrao));
 
     return modPadrao;
 }

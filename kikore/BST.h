@@ -30,7 +30,7 @@ valor nova_BST (valor nucleo)
     verificarErro (nucleo == NULL, "Entrada nula no construtor");
     valor tmp = NULL;
 
-    codigo mod = modificadorAtual ();
+    codigo mod = pegarModificadorAtual ();
 
     if 
     (
@@ -54,6 +54,8 @@ valor nova_BST (valor nucleo)
     {
         verificarErro (1, "Ainda nao implementado");
 
+        modificadorAtual ();
+
         // provavelmente usa "nucleo" (sendo núcleo sub-int) para simplesmente reservar o espaço
         
         // Ou talvez um vetor, em. Nucleo sendo um vetor
@@ -66,7 +68,8 @@ valor nova_BST (valor nucleo)
 void adicionar (valor val, valor oque)
 {
     verificarErro (oque == NULL, "Valor vazio em adicionar");
-    // verificarErro (val  == NULL, "Valor vazio em adicionar"); // não acho que necessita
+    // verificarErro (val  == NULL, "Valor vazio em adicionar"); 
+    // î não acho que necessita (porque não?) porque a linha abaixo já faz esse teste
     
     if (pegar_tipo (val) == codigoComplexo) 
     {

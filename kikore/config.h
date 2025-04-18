@@ -46,14 +46,13 @@ byte variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual;
 ////////////////////////////////////////////////// 
 // DEFINIÇÃO DO BYTE CONFIG
 
-// Construtor de configuração
-byte nova_configuracao (const bool vivo_morto, codigo tipo_dado, codigo padrao)
+// Construtor de configuração (NÃO PODE INVOLVER MODIFICADOR ATUAL)
+byte nova_configuracao (const bool vivo_morto, codigo tipo_dado, codigo modificador, codigo padrao)
 {
-    codigo modificador = modificadorAtual ();
-
     verificarErro 
     (
-        modificador == padrao == codigoPadrao,  "Input inexistente nas funcoes de configuracao"
+        (modificador == codigoPadrao) && codigoPadrao == padrao,  
+        "Input inexistente nas funcoes de configuracao"
     );
 
     if (modificador == codigoPadrao)
@@ -72,6 +71,12 @@ codigo modificadorAtual ()
     variavelDeModificadorAtual = codigoPadrao;
 
     return tmp;
+}
+
+// Pega o modificador atual
+codigo pegarModificadorAtual ()
+{
+    return variavelDeModificadorAtual;
 }
 
 // Retorna a configuração de um Valor

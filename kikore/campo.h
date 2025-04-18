@@ -36,7 +36,7 @@ valor novo_campo (string nome, valor val)
 
     valor tmp = NULL;
 
-    codigo mod = modificadorAtual ();
+    codigo mod = pegarModificadorAtual ();
 
     if (mod == codigoMaleavel || mod == codigoFixado)
     {

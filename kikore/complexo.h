@@ -41,7 +41,7 @@ valor novo_complexo (valor comp)
     verificarSubtipo (comp, codigoCampo);
     valor tmp = NULL;
 
-    codigo mod = modificadorAtual ();
+    codigo mod = pegarModificadorAtual ();
     
     if 
     (
@@ -52,15 +52,21 @@ valor novo_complexo (valor comp)
     {
         tmp = nova_BST (comp);
 
-        //codigo mod = modificadorAtual ();
-    
+        naoSalvar valor mnp = novo_manipulador (tmp);
+
+        anotar_configuracoes (mnp, vivo, 13, (mod == codigoPadrao)? codigoMaleavel:mod); 
+        // TÁ SUBTRAINDO UM DO TIPO??? ONDE!!! (era do +255, erro absurdo)
+
         //variavelDeModificadorAtual = valorComumDaVariavelDeModificadorAtual;
     
         //acessar (byte, tmp, 0) = nova_configuracao (vivo, mod, codigoComplexo);
+
+        limpar (mnp);
     }
     else 
     {
         verificarErro (1, "Nao implementado");
+        //modificadorAtual (); // essa linha nem roda!
     }
 
     return tmp;

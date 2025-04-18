@@ -7,7 +7,9 @@
 void main (void)
 {
     M
-        valor y = novo_campo ("Tipo", novo_texto ("Teste"));
+        valor t = novo_texto ("Teste");
+
+        valor y = novo_campo ("Tipo", t);
 
         valor a = novo_complexo (y);
 
