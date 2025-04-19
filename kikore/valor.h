@@ -48,6 +48,8 @@ bool naoSalvarUmaVez = false;
 int compararStrings (char* a, char* b);
 void registrarNaMemoria (ptr pon);
 string para_string (valor texto);
+valor novo_texto (string str);
+char * nome (valor val);
 
 //////////////////////////////////////////////////
 // Construtores
@@ -90,19 +92,35 @@ int comparar (valor a, valor b)
 
             tmp = compararStrings (str1, str2); // agora uma função de texto -> string
 
-            free (str1);
-            free (str2);
-        }
-    }
+            limpar (str1);
+            limpar (str2); //🔥🔥🔥 ESCUTA AQUI, NÃO ESQUEÇA DE LER ISSO, IMPORTANTE! 🔥🔥🔥🔥🔥🔥
+        }                  //🔥🔥🔥🔥 CONSTRUA O TOSTRING ANTES DE CONTINUAR ESSA FUNÇÃO! ELE VAI SER
+    }                      //🔥🔥🔥🔥🔥 ESSENCIAL PRA ISSO FICAR SIMPLE STUPID!!! 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
     else if (cfg_a == 12) // se for campo
     {
         if (cfg_b == 12) // se ambos forem campos
         {
             // campo varia, eu REALMENTE DEVERIA deixar esse conceito descansar um pouco
+            string str1 = nome (a);
+            string str2 = nome (b);
+            
+            tmp = comparar (novo_texto (str1), novo_texto (str2)); 
+            // ISSO TÁ ERRADO E RUIM EM TANTOS NÍVEIS!
+
+            // Motivos de porque isso tá horrível:
+            // 1 - a função nome não retorna texto, retorna string! não é um valor que a biblioteca trata
+            // 2 - é recursivo, então eu uso o outro sistema de comparação dessa mesma função, mas o outro sistema TAMBÉM é ineficiente!
+            // 3 - para a função aceitar os valores, eles ainda precisam serem tornados em textos! 
+
+            limpar (str1);
+            limpar (str2);
 
             // Funções de dentro das classes para fazer tudo por mim, e aí eu só uso, parece ser way2go
         }
     }
+
+    // que os deuses da computação me perdoem, Turing deve estar decepcionado comigo agora
+    // Não senhor Turing, não passei no recaptcha u-u
 
     return tmp;
 }

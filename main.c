@@ -10,16 +10,20 @@ void main (void)
         valor t = novo_texto ("Teste");
 
         valor y = novo_campo ("Tipo", t);
+        valor z = novo_campo ("Bomga", t);
 
         valor a = novo_complexo (y);
 
         valor b = novo_campo ("Valor", novo_texto ("555"));
 
+        adicionar (a, z);
         adicionar (a, b);
 
-        maleavel valor bst = nova_BST (a);
+        // maleavel valor bst = nova_BST (a);
         
-        imprimirBitsAteh (a, 25);
+        imprimirBitsAteh (a, tamanhoComplexo);
+
+        //printf ("<%s>", nome (z));
     W
 
     finalizar (0, "Funcionando");

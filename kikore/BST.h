@@ -18,6 +18,8 @@
 //////////////////////////////////////////////////
 // Valores especiais
 
+// Tamanho da BST definido no complexo.h
+
 // Código de BST
 codigo codigoBST = 19;
 
@@ -39,7 +41,7 @@ valor nova_BST (valor nucleo)
         mod == codigoPadrao
     )
     {
-        tmp = novo_valor (tamanhoByte + 3 * tamanhoValor); // valor do nó, esquerda, direita
+        tmp = novo_valor (tamanhoBST); // valor do nó, esquerda, direita
         naoSalvar valor mnp = novo_manipulador (tmp);
         anotar_configuracoes (mnp, vivo, codigoBST, codigoMaleavel);  
         anotar_valor (mnp, nucleo);

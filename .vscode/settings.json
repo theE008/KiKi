@@ -66,6 +66,10 @@
     "config.h": "c",
     "byte.h": "c",
     "valor.h": "c",
-    "nucleo.h": "c"
+    "nucleo.h": "c",
+    "campo.h": "c",
+    "bst.h": "c",
+    "int.h": "c",
+    "complexo.h": "c"
   }
 }

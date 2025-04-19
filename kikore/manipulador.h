@@ -155,6 +155,28 @@ valor anotar_string (valor mnp, string str)
     mudar_indice (mnp, x + tam * tamanhoChar);
 }
 
+// Ler string
+char* ler_string (valor mnp)
+{
+    verificarSubtipo (mnp, codigoManipulador);
+
+    int tam = ler_int (mnp);
+
+    int x = pegar_indice (mnp);
+    valor val = pegar_valor (mnp);
+
+    char * tmp = NULL;
+    malocar (tmp, char*, tam + 1);
+
+    loop (z, tam)
+    {
+        tmp [z] = acessar (char, val, x + z * tamanhoChar);
+    }
+    tmp [tam] = '\0';
+
+    return tmp;
+}
+
 //////////////////////////////////////////////////
 // DEBUG
 

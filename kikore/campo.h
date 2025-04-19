@@ -67,5 +67,39 @@ valor novo_campo (string nome, valor val)
 }
 
 //////////////////////////////////////////////////
+// FUNÇÕES DE ANOTAR
+ 
+// Pega o nome do campo (fazer retornar valor (texto) mas pra isso, função de duplicar)
+char * nome (valor val)
+{
+    verificarErro (val == NULL, "Valor invalido");
+    verificarSubtipo (val, codigoCampo);
+
+    codigo mod = pegar_modificador (val);
+
+    // se for maliavel, vai ser ptr
+    if (mod == codigoMaleavel || mod == codigoFixado)
+    {
+        return para_string (acessar (valor, val, tamanhoByte + tamanhoValor));
+    }
+    else
+    // se for rigido, vai ser txt
+    if (mod == codigoRigido || mod == codigoConstante)
+    {
+        naoSalvar valor mnp = novo_manipulador (val);
+
+        ler_byte (mnp);
+        ler_valor (mnp);
+
+        char * tmp = ler_string (mnp);
+
+        limpar (mnp);
+
+        return tmp;
+    }
+    else verificarErro (1, "Nome nao faz sentido aqui");
+}
+
+//////////////////////////////////////////////////
 
 #endif

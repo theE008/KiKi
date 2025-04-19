@@ -28,6 +28,11 @@ valor nova_BST (valor nucleo);
 //////////////////////////////////////////////////
 // Valores especiais
 
+// Tamanho
+const short tamanhoBST = tamanhoByte + 3 * tamanhoValor; // quando maleável
+
+// Tamanho
+const short tamanhoComplexo = tamanhoBST; // quando maleável
 
 // Código de Complexo
 const byte codigoComplexo = 13;

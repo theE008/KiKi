@@ -95,6 +95,12 @@ codigo pegar_tipo (valor val)
     return (config % 32);
 }
 
+// Retorna o código do modificador
+codigo pegar_modificador (valor val)
+{
+    return (pegar_configuracao (val) % 128) - pegar_tipo (val);
+}
+
 //////////////////////////////////////////////////
 
 #endif

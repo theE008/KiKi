@@ -101,7 +101,7 @@ string para_string (valor texto)
 
     ler_byte (mnp);
     int tam = ler_int (mnp);
-    tmp = malloc (tam); // não coloquei + 1
+    malocar (tmp, string, tam); // não coloquei + 1
 
     loop (x, tam)
     {
