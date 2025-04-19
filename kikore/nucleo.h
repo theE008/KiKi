@@ -17,6 +17,8 @@
 
 #include "GC.h" // para limpar a pilha
 
+#include <stdarg.h> // para vários argumentos
+
 //////////////////////////////////////////////////
 // Valores Especiais
 
@@ -184,6 +186,9 @@ verificarErro (tipo * (tipo != codSubtipo), "Valor recebido incompativel com a f
 
 #define verificarModificador(naoPodeSer,porque) \
 if (modificadorAtual () == naoPodeSer) {verificarErro (naoPodeSer, porque);}
+
+// Para finalizar funções do jeito correto
+#define O ((void *)0)
 
 //////////////////////////////////////////////////
 
