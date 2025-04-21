@@ -77,6 +77,30 @@ valor novo_complexo (valor comp)
     return tmp;
 } 
 
+// Pegar elemento do complexo
+valor pegar (valor comp, char* campo)
+{
+    verificarSubtipo (comp, codigoComplexo);
+    verificarErro (campo == NULL, "Nome inexistente");
+
+    valor ptr = comp;
+
+    int tmp = 1;
+
+    while (tmp != 0 && ptr != NULL)
+    {
+        string name = nome (acessar (valor, ptr, tamanhoByte));
+        tmp = compararStrings (name, campo);
+        limpar (name);
+
+             if (tmp < 0) {ptr = acessar (valor, ptr, tamanhoByte +     tamanhoValor);}
+        else if (tmp > 0) {ptr = acessar (valor, ptr, tamanhoByte + 2 * tamanhoValor);}
+    }
+
+    if (ptr == NULL) return NULL;
+    else
+    return acessar (valor, acessar (valor, ptr, tamanhoByte), tamanhoByte);
+}
 
 //////////////////////////////////////////////////
 

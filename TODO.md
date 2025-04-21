@@ -5,5 +5,6 @@
 3 - imprimir <FEITO>  (necessita do toString)
 4 - duplicar
 4 - fazer a função de pegar nome retornar Texto, não string
+5 - pegar () no complexo
 
 99 - polimorfismo em C, funções com infinitos inputs, de infinitos tipos sendo aceitos, que só fazem o que precisa ser feito mágicamente. Python, só que bom.
