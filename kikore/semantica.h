@@ -60,6 +60,10 @@ valor nome (valor argumentos, ...) \
 #define seTiverArgumento(var,nome) valor var = NULL; \
 if (argumentos) var = pegar (argumentos, nome); if (var)
 
+// Se tiver tal campo na resposta
+#define seTiverNaResposta(var,nome) valor var = NULL; \
+if (resposta) var = pegar (resposta, nome); if (var)
+
 // Retorna a resposta
 #define construido \
         if (argumentos != NULL) argumentos = va_arg (args, valor); \

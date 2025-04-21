@@ -14,13 +14,9 @@
 
 construirFuncao (integralParaTexto)
 {
-    adicionarTextoNaResposta ("Limite inferior", "Inexistente");
-
-    
-    seTiverArgumento (teste, "Teste")
-    {
-        adicionarNaResposta ("Aqui oh", teste);
-    }
+    seTiverArgumento (limSup, "Limite superior") adicionarNaResposta ("Limite superior", limSup);
+    seTiverArgumento (limInf, "Limite inferior") adicionarNaResposta ("Limite inferior", limInf);
+    seTiverArgumento (funcao, "Funcao") adicionarNaResposta ("Funcao", funcao);
 }
 construido;
 
@@ -29,9 +25,21 @@ void main (void)
     M
         valor novaLinha = novo_texto ("\n");
 
-        valor comp = novo_complexo (novo_campo ("Teste", novo_texto ("Funcionando")));
+        valor complexo = listar 
+        (
+            novo_campo ("Limite superior", novo_texto ("2")),
+            novo_campo ("Limite inferior", novo_texto ("4")),
+            O
+        );
 
-        imprimir (integralParaTexto (comp, O), novaLinha, novaLinha, O);
+        imprimir 
+        (
+            integralParaTexto (complexo, O),            
+
+            novaLinha,
+            novaLinha,
+            O
+        );
     W
         
     finalizar (0, "Teste extrapolado finalizado");

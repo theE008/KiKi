@@ -320,7 +320,6 @@ void imprimir (valor argumentos, ...)
     va_end (args);
 }
 
-
 //////////////////////////////////////////////////
 
 #endif

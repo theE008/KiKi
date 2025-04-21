@@ -23,6 +23,7 @@
 //////////////////////////////////////////////////
 // Protótipos
 
+void adicionar (valor val, valor oque);
 valor nova_BST (valor nucleo);
 
 //////////////////////////////////////////////////
@@ -76,6 +77,33 @@ valor novo_complexo (valor comp)
 
     return tmp;
 } 
+
+// Cria um objeto complexo mais arrumado
+valor listar (valor argumentos, ...)
+{
+    va_list args;
+    va_start (args, argumentos);
+
+    valor atual = argumentos;
+
+    verificarErro (atual == NULL, "Insuficiencia de argumentos");
+    
+    valor tmp = novo_complexo (atual);
+    atual = va_arg (args, valor);
+    
+    verificarErro (atual == NULL, "Insuficiencia de argumentos");
+
+    while (atual != NULL)
+    {
+        adicionar (tmp, atual);
+
+        atual = va_arg (args, valor);
+    }
+
+    va_end (args);
+
+    return tmp;
+}
 
 // Pegar elemento do complexo
 valor pegar (valor comp, char* campo)
