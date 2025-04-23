@@ -91,6 +91,12 @@ int comparar (valor a, valor b)
     return tmp;
 }
 
+// Duplica o valor
+valor duplicar (valor val)
+{
+    verificarErro (1, "Implementa isso");
+}
+
 //////////////////////////////////////////////////
 // Imprimir
 

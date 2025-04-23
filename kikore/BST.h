@@ -70,12 +70,14 @@ valor nova_BST (valor nucleo)
 void adicionar (valor val, valor oque)
 {
     verificarErro (oque == NULL, "Valor vazio em adicionar");
+    bool complexo = false;
     // verificarErro (val  == NULL, "Valor vazio em adicionar"); 
     // î não acho que necessita (porque não?) porque a linha abaixo já faz esse teste
     
     if (pegar_tipo (val) == codigoComplexo) 
     {
         verificarSubtipo (oque, codigoCampo); // apenas campos podem ser adicionados em Val. Complexos 
+        complexo = true;
     }
     else verificarSubtipo (val, codigoBST);
 
@@ -84,20 +86,20 @@ void adicionar (valor val, valor oque)
     if (resp > 0) 
     {
         if (acessar (valor, val, tamanhoByte + 2 * tamanhoValor) == NULL) 
-            acessar (valor, val, tamanhoByte + 2 * tamanhoValor) = nova_BST (oque);
+            acessar (valor, val, tamanhoByte + 2 * tamanhoValor) = (complexo)? novo_complexo (oque) : nova_BST (oque);
         else 
             adicionar (acessar (valor, val, tamanhoByte + 2 * tamanhoValor), oque);
     }
     else if (resp < 0)
     {
         if (acessar (valor, val, tamanhoByte + tamanhoValor) == NULL) 
-            acessar (valor, val, tamanhoByte + tamanhoValor) = nova_BST (oque);
+            acessar (valor, val, tamanhoByte + tamanhoValor) = (complexo)? novo_complexo (oque) : nova_BST (oque);
         else 
             adicionar (acessar (valor, val, tamanhoByte + tamanhoValor), oque);        
     }
     else 
     {
-        acessar (valor, val, tamanhoByte) = nova_BST (oque);
+        acessar (valor, val, tamanhoByte) = (complexo)? novo_complexo (oque) : nova_BST (oque);
     }
 }
 
