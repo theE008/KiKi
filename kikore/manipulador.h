@@ -18,6 +18,7 @@
 #include "texto.h"
 #include "valor.h"
 #include "GC.h"
+#include "funcao.h"
 
 //////////////////////////////////////////////////
 // PROTÓTIPOS
@@ -120,6 +121,7 @@ tipo ler_##tipo (valor mnp) \
     return acessar (tipo, val, x); \
 }
 
+novaFuncaoDeAnotarELerNoManipulador (funcao, tamanhoFuncao);
 novaFuncaoDeAnotarELerNoManipulador (valor , tamanhoValor );
 novaFuncaoDeAnotarELerNoManipulador (byte  , tamanhoByte  );
 novaFuncaoDeAnotarELerNoManipulador (char  , tamanhoChar  );

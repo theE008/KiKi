@@ -26,10 +26,6 @@ const short tamanhoValor = sizeof (valor);
 // Tipo código
 typedef const byte codigo;
 
-// Função
-typedef valor (* funcao) (valor, ...);
-const short tamanhoFuncao = sizeof (funcao);
-
 // Código de Valor Vazio
 const byte codigoVazio = 0;
 
