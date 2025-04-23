@@ -11,20 +11,21 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include "nucleo.h"
+#include "manipulador.h"
+
+//////////////////////////////////////////////////
+// Protótipos
+valor anotar_funcao (valor mnp, funcao t);
 
 //////////////////////////////////////////////////
 // Tipos Especiais
-
-// Função
-typedef valor (* funcao) (valor, ...);
-const short tamanhoPtrFuncao = sizeof (funcao);
 
 // Tamanho
 const short tamanhoFuncao = tamanhoByte + tamanhoPtrFuncao; // quando maleável
 
 // Código de Funcao
 const byte codigoFuncao = 11;
+
 
 //////////////////////////////////////////////////
 // CONSTRUTOR
@@ -38,7 +39,7 @@ valor nova_funcao (funcao func)
     naoSalvar valor mnp = novo_manipulador (tmp);
 
     anotar_configuracoes (mnp, vivo, codigoFuncao, codigoRigido);
-
+    anotar_funcao (mnp, func);
 
     limpar (mnp);
     return tmp;

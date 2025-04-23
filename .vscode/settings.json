@@ -70,6 +70,7 @@
     "campo.h": "c",
     "bst.h": "c",
     "int.h": "c",
-    "complexo.h": "c"
+    "complexo.h": "c",
+    "funcao.h": "c"
   }
 }

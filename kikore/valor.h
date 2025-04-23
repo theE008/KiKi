@@ -23,6 +23,10 @@
 typedef byte * valor;
 const short tamanhoValor = sizeof (valor);
 
+// Função
+typedef valor (* funcao) (valor, ...);
+const short tamanhoPtrFuncao = sizeof (funcao);
+
 // Tipo código
 typedef const byte codigo;
 

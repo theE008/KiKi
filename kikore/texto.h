@@ -161,6 +161,16 @@ string para_string (valor texto)
                 limpar (aux2);
             break;
 
+            case 11:
+                malocar (tmp, string, 12); 
+
+                string aux4 = "<função>";
+
+                loop (a, 11) tmp [a] = aux4 [a];
+
+                tmp [11] = '\0';
+            break;
+
             case 13: 
                 cabeca = true;
 

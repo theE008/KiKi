@@ -3,6 +3,7 @@
 #include "kikore/BST.h"
 
 #include "kikore/semantica.h"
+#include "kikore/funcao.h"
 
 /*
     double imprimirIntegral (funcao f, double a, double b)
@@ -17,6 +18,8 @@ construirFuncao (integralParaTexto)
     seTiverArgumento (limSup, "Limite superior") adicionarNaResposta ("Limite superior", limSup);
     seTiverArgumento (limInf, "Limite inferior") adicionarNaResposta ("Limite inferior", limInf);
     seTiverArgumento (funcao, "Funcao") adicionarNaResposta ("Funcao", funcao);
+
+    adicionarNaResposta ("para_string", nova_funcao (integralParaTexto));
 }
 construido;
 
