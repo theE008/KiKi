@@ -32,7 +32,7 @@ void main (void)
         valor campo_com_lista = novo_campo ("dados", complexa_lista);
 
         valor principal = novo_complexo (campo_com_lista);
-        adicionar (principal, novo_campo ("versao", novo_texto ("1.0")));
+        adicionar (principal, novo_campo ("versão", novo_texto ("1.0")));
         adicionar (principal, novo_campo ("ativo", novo_texto ("true")));
 
         imprimir (principal, novaLinha, novaLinha, O);
