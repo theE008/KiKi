@@ -124,6 +124,7 @@ string para_string (valor texto)
         valor Va = NULL;
         valor Vb = NULL;
         valor Vc = NULL;
+        static int nivel = 1;
         int x = 0;
         int y = 0;
         int z = 0;
@@ -135,27 +136,36 @@ string para_string (valor texto)
             break;
 
             case 12:
-                aux1  = para_string (ler_valor (mnp));
+                Va = ler_valor (mnp);
+                aux1  = para_string (Va);
                 aux2  = nome    (texto);
+
+                bool textual = false;
+
+                if (pegar_tipo (Va) == 9) textual = true;
 
                 x = tamanhoDaString (aux1);
                 y = tamanhoDaString (aux2);
 
-                malocar (tmp, char*, (x + y + 2) * tamanhoChar);
+                malocar (tmp, char*, (x + y + 2 + 2 * textual) * tamanhoChar);
 
                 loop (a, y)
                 {
-                    tmp [a] = aux2 [a];
+                    tmp [z++] = aux2 [a];
                 }                
 
-                tmp [y]     = ':';
-                tmp [y + 1] = ' ';
+                tmp [z++]     = ':';
+                tmp [z++]     = ' ';
 
+                if (textual) tmp [z++] = '\"';
+ 
                 loop (a, x)
                 {
-                    tmp [a + y + 2] = aux1 [a];
+                    tmp [z++] = aux1 [a];
                 }
-                tmp [x + y + 2] = '\0';
+                
+                if (textual) tmp [z++] = '\"';
+                tmp [z++] = '\0';
 
                 limpar (aux1);
                 limpar (aux2);
@@ -172,11 +182,10 @@ string para_string (valor texto)
             break;
 
             case 13: 
-                cabeca = true;
+                //cabeca = true;
 
             case 19: // BST TAMBÉM (por hora)
                 verificarErro (cdg == codigoRigido || cdg == codigoConstante, "Não implementado!");
-
 
                 bool holder = cabeca;
 
@@ -186,13 +195,27 @@ string para_string (valor texto)
 
                 cabeca = false;
 
-                if (Va) { aux1 = para_string (Va); x = tamanhoDaString (aux1); }
                 if (Vb) { aux2 = para_string (Vb); y = tamanhoDaString (aux2); }
                 if (Vc) { aux3 = para_string (Vc); z = tamanhoDaString (aux3); }
+                
+                codigo tipo = pegar_tipo (acessar (valor, Va, tamanhoByte));
+
+                if (tipo == 13) {cabeca = true; nivel ++;}
+                
+                if (Va) { aux1 = para_string (Va); x = tamanhoDaString (aux1);}
+
+                //printf ("\n<%d>\nA:%s\nB:%s\nC:%s\n------", pegar_tipo (acessar (valor, Va, tamanhoByte)), aux2, aux1, aux3);
+
+                if (cabeca == true) nivel--;
+
+                bool c = cabeca;
 
                 cabeca = holder;
 
-                malocar (tmp, char*, (x + y + z + 2 + 3 + 3 + 1 + 4 * (cabeca == true)) * tamanhoChar);
+                malocar 
+                (
+                    tmp, char*, (x + y + z + 3 * nivel + 2 + 3 + 1 + 4 * (cabeca == true)) * tamanhoChar
+                );
 
                 int cont = 0;
                 bool escrita = false;
@@ -218,7 +241,8 @@ string para_string (valor texto)
                 if (Va)
                 {
                     if (escrita == true) {tmp [cont++] = ','; tmp [cont++] = '\n';}
-                    tmp [cont++] = '\t';
+
+                    loop (a, nivel) {tmp [cont++] = ' '; tmp [cont++] = ' ';}
 
                     loop (a, x)
                     {
@@ -239,9 +263,14 @@ string para_string (valor texto)
                     }
                 }
 
+                
+
                 if (cabeca)
                 {
                     tmp [cont++] = '\n';
+
+                    loop (a, nivel - 1) {tmp [cont++] = ' '; tmp [cont++] = ' ';}
+                    
                     tmp [cont++] = '}';
                 }
                 
@@ -256,19 +285,6 @@ string para_string (valor texto)
                 verificarErro ((tipo)?tipo:404, "Convertendo tipo estranho para string");
             break;
         }
-
-        /*
-        int tam = ler_int (mnp);
-
-        malocar (tmp, string, tam); // não coloquei + 1
-    
-        loop (x, tam)
-        {
-            tmp [x] = ler_char (mnp);
-        }
-    
-        tmp [tam] = '\0';
-        */
     
         limpar (mnp);
         return tmp;

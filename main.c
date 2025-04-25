@@ -2,48 +2,42 @@
 #include "kikore/campo.h"
 #include "kikore/BST.h"
 
-#include "kikore/semantica.h"
-#include "kikore/funcao.h"
-
-/*
-    double imprimirIntegral (funcao f, double a, double b)
-    {
-        static int q = 1;
-        printf ("Integral de %g ate %g da questao %d: %lf\n", a, b, q++, integrar (f, 0, a, b));
-    }
-*/
-
-construirFuncao (integralParaTexto)
-{
-    seTiverArgumento (limSup, "Limite superior") adicionarNaResposta ("Limite superior", limSup);
-    seTiverArgumento (limInf, "Limite inferior") adicionarNaResposta ("Limite inferior", limInf);
-    seTiverArgumento (funcao, "Funcao") adicionarNaResposta ("Funcao", funcao);
-
-    adicionarNaResposta ("para_string", nova_funcao (integralParaTexto));
-}
-construido;
-
 void main (void)
 {
     M
         valor novaLinha = novo_texto ("\n");
 
-        valor complexo = listar 
-        (
-            novo_campo ("Limite superior", novo_texto ("2")),
-            novo_campo ("Limite inferior", novo_texto ("4")),
-            O
-        );
+        valor texto_nome    = novo_texto ("Thiago");
+        valor texto_idade   = novo_texto ("22");
+        valor texto_online  = novo_texto ("true");
+        valor texto_status  = novo_texto ("ativo");
 
-        imprimir 
-        (
-            integralParaTexto (complexo, O),            
+        valor campo_nome    = novo_campo ("nome", texto_nome);
+        valor campo_idade   = novo_campo ("idade", texto_idade);
+        valor campo_online  = novo_campo ("online", texto_online);
+        valor campo_status  = novo_campo ("status", texto_status);
 
-            novaLinha,
-            novaLinha,
-            O
-        );
+        valor perfil = novo_complexo (campo_nome);
+        adicionar (perfil, campo_idade);
+        adicionar (perfil, campo_online);
+        adicionar (perfil, campo_status);
+
+        valor campo_usuario = novo_campo ("usuario", perfil);
+
+        valor campo_repetido = novo_campo ("nome", novo_texto ("outro"));
+
+        valor complexa_lista = novo_complexo (campo_repetido);
+        adicionar (complexa_lista, campo_usuario);
+
+        valor campo_com_lista = novo_campo ("dados", complexa_lista);
+
+        valor principal = novo_complexo (campo_com_lista);
+        adicionar (principal, novo_campo ("versao", novo_texto ("1.0")));
+        adicionar (principal, novo_campo ("ativo", novo_texto ("true")));
+
+        imprimir (principal, novaLinha, novaLinha, O);
+
     W
-        
+
     finalizar (0, "Teste extrapolado finalizado");
 }
