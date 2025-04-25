@@ -11,6 +11,7 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
+#include "math.h"
 #include "GC.h"
 
 ////////////////////////////////////////////////// 
@@ -112,8 +113,11 @@ string para_string (valor texto)
         return tmp;
     }
     else
-    {
+    {   
         naoSalvar valor mnp = novo_manipulador (texto);
+
+        int quantos_espacos_tab = 4;
+        bool chaves_corretas = true;
 
         codigo cdg  = pegar_modificador (texto);
         byte tipo   = ler_byte (mnp) % 32;
@@ -121,6 +125,7 @@ string para_string (valor texto)
         string aux1 = NULL;
         string aux2 = NULL;
         string aux3 = NULL;
+        string aux4 = NULL;
         valor Va = NULL;
         valor Vb = NULL;
         valor Vc = NULL;
@@ -131,6 +136,50 @@ string para_string (valor texto)
 
         switch (tipo)
         {
+            case 3:
+                y = ler_int (mnp);
+                x = (y == 0) ? 1 : floor (log10 (abs (y))) + 1;
+                z = 0;
+                
+                if (y == 0)
+                {
+                    malocar (tmp, string, 2);
+                
+                    tmp [0] = '0';
+                    tmp [1] = '\0';
+                }
+                else
+                {
+                    int negativo = (y < 0);
+                    int tamanho_total = x + negativo + 1;
+                
+                    malocar (tmp, string, tamanho_total);
+                
+                    if (negativo)
+                    {
+                        tmp [z++] = '-';
+                        y = -y;
+                    }
+                
+                    // Armazena os dígitos de trás pra frente num buffer temporário
+                    char reverso [x];
+                    int i = 0;
+                
+                    while (y > 0)
+                    {
+                        reverso [i++] = (y % 10) + '0';
+                        y /= 10;
+                    }
+                
+                    while (i--)
+                    {
+                        tmp [z++] = reverso [i];
+                    }
+                
+                    tmp [z] = '\0';
+                }            
+            break;
+
             case 9:
                 tmp = ler_string (mnp);
             break;
@@ -174,7 +223,7 @@ string para_string (valor texto)
             case 11:
                 malocar (tmp, string, 12); 
 
-                string aux4 = "<função>";
+                aux4 = "<função>";
 
                 loop (a, 11) tmp [a] = aux4 [a];
 
@@ -214,7 +263,15 @@ string para_string (valor texto)
 
                 malocar 
                 (
-                    tmp, char*, (x + y + z + 3 * nivel + 2 + 3 + 1 + 4 * (cabeca == true)) * tamanhoChar
+                    tmp, 
+                    char*, 
+                    (
+                        x + y + z + 
+                        quantos_espacos_tab * 2 * nivel + 
+                        2 + 3 + 1 + 
+                        chaves_corretas * (quantos_espacos_tab + 1) +
+                        4 * (cabeca == true)
+                    ) * tamanhoChar
                 );
 
                 int cont = 0;
@@ -222,6 +279,11 @@ string para_string (valor texto)
 
                 if (cabeca)
                 {
+                    if (chaves_corretas) 
+                    {
+                        tmp [cont++] = '\n';
+                        loop (a, quantos_espacos_tab * (nivel - 1)) {tmp [cont++] = ' ';}
+                    }
                     tmp [cont++] = '{';
                     tmp [cont++] = '\n';
                 }
@@ -242,7 +304,7 @@ string para_string (valor texto)
                 {
                     if (escrita == true) {tmp [cont++] = ','; tmp [cont++] = '\n';}
 
-                    loop (a, nivel) {tmp [cont++] = ' '; tmp [cont++] = ' ';}
+                    loop (a, quantos_espacos_tab * nivel) {tmp [cont++] = ' ';}
 
                     loop (a, x)
                     {
@@ -269,7 +331,7 @@ string para_string (valor texto)
                 {
                     tmp [cont++] = '\n';
 
-                    loop (a, nivel - 1) {tmp [cont++] = ' '; tmp [cont++] = ' ';}
+                    loop (a, quantos_espacos_tab * (nivel - 1)) {tmp [cont++] = ' ';}
                     
                     tmp [cont++] = '}';
                 }

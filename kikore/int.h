@@ -26,7 +26,7 @@ const byte codigoInt = 3;
 valor novo_int (int val)
 {
     valor tmp = novo_valor (tamanhoByte + tamanhoInt);
-    naoSalvar valor mnp = novo_manipulador (mnp);
+    naoSalvar valor mnp = novo_manipulador (tmp);
 
     anotar_configuracoes (mnp, vivo, codigoInt, codigoRigido);
     anotar_int (mnp, val);

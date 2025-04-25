@@ -27,7 +27,7 @@ __attribute__ ((constructor)) void construtor_pilhaDeMemoria ()
 {
     ptr dummy = malloc (1);
     
-    verificarErro (dummy == NULL, "Erro na alocacao");
+    verificarErro (dummy == NULL, "Erro na alocação");
 
     usadoPelaMemoria = true;
 
@@ -42,7 +42,7 @@ __attribute__ ((constructor)) void construtor_pilhaDeMemoria ()
 // Adiciona um ponteiro na pilha de memória
 void registrarNaMemoria (ptr pon)
 {
-    verificarErro (pon == NULL, "Ponteiro sendo registrado nao existe");
+    verificarErro (pon == NULL, "Ponteiro sendo registrado não existe");
 
     if (!usadoPelaMemoria)
     {
@@ -116,7 +116,7 @@ void imprimirPilhaDeMemoria ()
 {
     valor atual = pilhaDeMemoria;
 
-    printf("================ PILHA DE MEMORIA ================\n");
+    printf("================ PILHA DE MEMÓRIA ================\n");
     while (atual != NULL) 
     {
         int nvl  = acessar (int, atual, tamanhoByte             );

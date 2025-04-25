@@ -1,6 +1,9 @@
 # COISAS A FAZER!!!
 
-1 - toString <FEITO O BÁSICO PARA FUNCIONAR> (melhorar o sistema de impressão, terminal feio)
+1 - toString <FEITO O BÁSICO PARA FUNCIONAR> 
+(melhorar o sistema de impressão, terminal feio [FEITO]) 
+(Adicionar mais valores possíveis)
+
 2 - consertar o comparar (necessita do toString) [FEITO]
 3 - imprimir (necessita do toString) [FEITO]
 4 - duplicar
