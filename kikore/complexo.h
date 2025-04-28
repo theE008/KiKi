@@ -86,15 +86,17 @@ valor listar (valor argumentos, ...)
 
     valor atual = argumentos;
 
-    verificarErro (atual == NULL, "Insuficiencia de argumentos");
+    verificarSubtipo (atual, codigoCampo);
     
     valor tmp = novo_complexo (atual);
     atual = va_arg (args, valor);
     
-    verificarErro (atual == NULL, "Insuficiencia de argumentos");
+    // verificarErro (atual == NULL, "Insuficiencia de argumentos");
+
 
     while (atual != NULL)
     {
+        verificarSubtipo (atual, codigoCampo);
         adicionar (tmp, atual);
 
         atual = va_arg (args, valor);

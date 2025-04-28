@@ -116,7 +116,7 @@ void imprimirPilhaDeMemoria ()
 {
     valor atual = pilhaDeMemoria;
 
-    printf("================ PILHA DE MEMÓRIA ================\n");
+    printf("\n\n================ PILHA DE MEMÓRIA ================\n");
     while (atual != NULL) 
     {
         int nvl  = acessar (int, atual, tamanhoByte             );
@@ -125,7 +125,7 @@ void imprimirPilhaDeMemoria ()
 
         atual = acessar (valor, atual, tamanhoByte + tamanhoInt + tamanhoPtr);
     }
-    printf("==================================================\n");
+    printf(    "==================================================\n");
 }
 
 // Função de Debug

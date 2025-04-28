@@ -122,6 +122,7 @@ tipo ler_##tipo (valor mnp) \
 }
 
 novaFuncaoDeAnotarELerNoManipulador (funcao, tamanhoFuncao);
+novaFuncaoDeAnotarELerNoManipulador (double, tamanhoDouble);
 novaFuncaoDeAnotarELerNoManipulador (valor , tamanhoValor );
 novaFuncaoDeAnotarELerNoManipulador (byte  , tamanhoByte  );
 novaFuncaoDeAnotarELerNoManipulador (char  , tamanhoChar  );
