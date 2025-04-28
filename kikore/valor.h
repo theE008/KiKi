@@ -59,6 +59,8 @@ valor novo_valor (size_t tam)
 {
     valor tmp = NULL;
 
+    // tam += 10; // worth da shot
+
     malocar (tmp, valor, tam);
 
     loop (x, tam) * (tmp + x) = 255; // 255 para teste
@@ -95,6 +97,8 @@ int comparar (valor a, valor b)
 valor duplicar (valor val)
 {
     verificarErro (1, "Implementa isso");
+
+    return NULL;
 }
 
 //////////////////////////////////////////////////
@@ -123,6 +127,7 @@ valor imprimirBitsAteh (valor val, size_t tam)
 // DEBUG
 
 // Testar a biblioteca
+/*
 int DEBUGAR_VALOR_H ()
 {
     valor a = novo_valor (5);
@@ -131,6 +136,7 @@ int DEBUGAR_VALOR_H ()
 
     limpar (a);
 }
+*/
 
 //////////////////////////////////////////////////
 

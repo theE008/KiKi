@@ -18,7 +18,7 @@
 // PROTÓTIPOS
 
 codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado, codigo modPadrao);
-valor anotar_string (valor mnp, string str);
+void anotar_string (valor mnp, string str);
 valor anotar_int (valor mnp, int t);
 valor novo_manipulador (valor val);
 char* ler_string (valor mnp);
@@ -120,7 +120,7 @@ string para_string (valor texto)
         bool chaves_corretas = true;
 
         codigo cdg  = pegar_modificador (texto);
-        byte tipo   = ler_byte (mnp) % 32;
+        byte tipos  = ler_byte (mnp) % 32;
         static bool cabeca = true;
         string aux1 = NULL;
         string aux2 = NULL;
@@ -134,7 +134,7 @@ string para_string (valor texto)
         int y = 0;
         int z = 0;
 
-        switch (tipo)
+        switch (tipos)
         {
             case 3:
                 y = ler_int (mnp);
@@ -257,7 +257,7 @@ string para_string (valor texto)
 
                 if (cabeca == true) nivel--;
 
-                bool c = cabeca;
+                //bool c = cabeca;
 
                 cabeca = holder;
 
@@ -344,7 +344,7 @@ string para_string (valor texto)
             break;
         
             default:
-                verificarErro ((tipo)?tipo:404, "Convertendo tipo estranho para string");
+                verificarErro ((tipos)?tipos:404, "Convertendo tipo estranho para string");
             break;
         }
     

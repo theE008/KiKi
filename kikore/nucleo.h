@@ -92,7 +92,7 @@ void finalizar (int val, string men)
      
     printf 
     ( VERDE
-        "\n\n\t%s\n\t%s '%d' %s\n\n\t'%ld' %s\n\t'%ld' %s\n" RESETAR, 
+        "\n\n\t%s\n\t%s '%ld' %s\n\n\t'%ld' %s\n\t'%ld' %s\n" RESETAR, 
         "FIM DO PROGRAMA", "Finalizado com um total de", 
         memoria_usada - 34, "memória usada",
         alocacoes_feitas - 2, "alocações feitas", 

@@ -71,6 +71,8 @@
     "bst.h": "c",
     "int.h": "c",
     "complexo.h": "c",
-    "funcao.h": "c"
+    "funcao.h": "c",
+    "semantica.h": "c",
+    "arranjo.h": "c"
   }
 }

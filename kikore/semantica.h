@@ -18,6 +18,9 @@
 // SEMÂNTICA
 
 ////////////////// GERAL
+#define PROGRAMA int main (int argv, char ** argc) { if (1) // para forçar outras chaves
+#define FINALIZAR return 0; }
+#define DEBUGAR finalizar (0, "debug"); return 0; }
 #define naoExistir == NULL 
 #define forDiferente !=
 #define existir != NULL

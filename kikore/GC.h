@@ -65,7 +65,7 @@ void registrarNaMemoria (ptr pon)
 void limparPilhaDeMemoria ()
 {
     valor atual    = pilhaDeMemoria;
-    valor anterior =           NULL;
+    //valor anterior =           NULL;
     bool continuar =           true;
 
     while (atual != NULL && continuar)
@@ -129,10 +129,12 @@ void imprimirPilhaDeMemoria ()
 }
 
 // Função de Debug
+
+/*
 int debugar_GC_H ()
 {
     
-}
+}*/
 
 //////////////////////////////////////////////////
 

@@ -98,6 +98,8 @@ char * nome (valor val)
         return tmp;
     }
     else verificarErro (1, "Nome nao faz sentido aqui");
+
+    return NULL;
 }
 
 //////////////////////////////////////////////////

@@ -139,7 +139,7 @@ codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado, codig
 }
 
 // Anota string
-valor anotar_string (valor mnp, string str)
+void anotar_string (valor mnp, string str)
 {
     verificarSubtipo (mnp, codigoManipulador);
     verificarErro (str == NULL, "String invalida");
@@ -183,13 +183,18 @@ char* ler_string (valor mnp)
 // DEBUG
 
 // Função de teste
+
+/*
 int DEBUGAR_MANIPULADOR_H ()
 {
     //valor a = novo_valor (10);
     //valor b = novo_manipulador (a);
 
     //imprimirBitsAteh (b, tamanhoManipulador);
+
+    return 0;
 }
+*/
 
 //////////////////////////////////////////////////
 
