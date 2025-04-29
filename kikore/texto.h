@@ -12,7 +12,7 @@
 // BIBLIOTECAS
 
 #include "math.h"
-#include "GC.h"
+#include "double.h"
 
 ////////////////////////////////////////////////// 
 // PROTÓTIPOS
@@ -21,6 +21,7 @@ codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado, codig
 void anotar_string (valor mnp, string str);
 valor anotar_int (valor mnp, int t);
 valor novo_manipulador (valor val);
+double ler_double  (valor mnp);
 char* ler_string (valor mnp);
 valor ler_valor  (valor mnp);
 byte ler_byte (valor mnp);
@@ -122,6 +123,7 @@ string para_string (valor texto)
         codigo cdg  = pegar_modificador (texto);
         byte tipos  = ler_byte (mnp) % 32;
         static bool cabeca = true;
+        static int nivel = 1;
         string aux1 = NULL;
         string aux2 = NULL;
         string aux3 = NULL;
@@ -129,7 +131,7 @@ string para_string (valor texto)
         valor Va = NULL;
         valor Vb = NULL;
         valor Vc = NULL;
-        static int nivel = 1;
+        double dbl = 0;
         int x = 0;
         int y = 0;
         int z = 0;
@@ -178,6 +180,12 @@ string para_string (valor texto)
                 
                     tmp [z] = '\0';
                 }            
+            break;
+
+            case 4:
+                dbl = ler_double (mnp);
+                malocar (tmp, string, 32);     
+                snprintf (tmp, 32, "%g", dbl);           
             break;
 
             case 9:

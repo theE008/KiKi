@@ -11,7 +11,21 @@
 ////////////////////////////////////////////////// 
 // BIBLIOTECAS
 
-#include "GC.h"
+#include "manipulador.h"
+
+////////////////////////////////////////////////// 
+// PROTÓTIPOS
+
+codigo anotar_configuracoes (valor mnp, bool vivo_morto, codigo tipo_dado, codigo modPadrao);
+void anotar_string (valor mnp, string str);
+valor anotar_double (valor mnp, double t);
+valor anotar_int (valor mnp, int t);
+valor novo_manipulador (valor val);
+char* ler_string (valor mnp);
+valor ler_valor  (valor mnp);
+byte ler_byte (valor mnp);
+char ler_char (valor mnp);
+int  ler_int  (valor mnp);
 
 //////////////////////////////////////////////////
 // Valores especiais

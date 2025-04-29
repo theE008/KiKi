@@ -46,5 +46,16 @@ valor nova_funcao (funcao func)
 }
 
 //////////////////////////////////////////////////
+// CONVERSÕES
+
+// VFUNC -> func
+funcao para_funcao (valor val)
+{
+    verificarSubtipo (val, codigoFuncao);
+
+    return acessar (funcao, val, tamanhoByte);
+}
+
+//////////////////////////////////////////////////
 
 #endif

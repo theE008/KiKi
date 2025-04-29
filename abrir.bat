@@ -1,9 +1,7 @@
-@echo off
+@echo on
 
 git pull
 
 cls
 
-code .
-
-rodarC
+code . && rodarC.bat

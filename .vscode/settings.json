@@ -73,6 +73,7 @@
     "complexo.h": "c",
     "funcao.h": "c",
     "semantica.h": "c",
-    "arranjo.h": "c"
+    "arranjo.h": "c",
+    "double.h": "c"
   }
 }
