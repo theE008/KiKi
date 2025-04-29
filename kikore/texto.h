@@ -417,5 +417,15 @@ void imprimir (valor argumentos, ...)
 }
 
 //////////////////////////////////////////////////
+// CONSTANTES
+
+valor nL = NULL;
+
+__attribute__ ((constructor)) void construtor_texto () 
+{
+    noNivel (1) constante nL = novo_texto ("\n");
+}
+
+//////////////////////////////////////////////////
 
 #endif

@@ -25,6 +25,9 @@
 // Contador de nível
 int nivel = 0;
 
+// Modificador de nível por um turno
+int modificadorDeNivel = 0;
+
 //////////////////////////////////////////////////
 // PROTÓTIPOS
 
@@ -146,6 +149,9 @@ do { ptr = (tipo) malloc(tam); \
 // Verifica, registra e limpa
 #define limpar(ptr) \
 do {verificarErro (ptr == NULL, "Limpando ponteiro nulo"); limpezas_feitas ++; free (ptr); ptr = NULL;} while (0)
+
+// Modifica o nível do objeto mallocado
+#define noNivel(v) modificadorDeNivel = v;
 
 //////////////////////////////////////////////////
 // LOOPS
